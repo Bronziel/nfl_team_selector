@@ -12,9 +12,6 @@ class TeamSelectorApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Team Selector'),
-        ),
         body: TeamSelector(),
       ),
     );
