@@ -1,7 +1,7 @@
 import '../AFC/AFC_North.dart';
 import '../ClassTeam.dart';
 
-final List<Team> allTeams = [
+final List<Team> afcNorthTeams = [
   Team(
     name: Ravens.name,
     id: Ravens.id,
@@ -50,5 +50,4 @@ final List<Team> allTeams = [
     city: Bengals.city,
     state: Bengals.state,
   ),
-  // Create instances for other teams
 ];
