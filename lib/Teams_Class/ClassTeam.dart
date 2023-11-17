@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'AFC/AFC_North.dart';
-import 'NFC/NFC_North.dart';
+import 'AFC Team List/AfcNorthTeamList.dart';
+import 'NFC Team List/NfcNorthTeamList.dart';
 
 class Team {
   final String name;
@@ -27,3 +27,12 @@ class Team {
     required this.state,
   });
 }
+
+final List<Team> nfcTeams = [
+  ...nfcNorthTeams,
+];
+final List<Team> allTeams = [
+  ...afcNorthTeams,
+  ...nfcNorthTeams,
+  // Add other division and conference lists here
+];

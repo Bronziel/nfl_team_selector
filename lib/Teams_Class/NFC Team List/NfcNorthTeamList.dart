@@ -1,7 +1,7 @@
 import '../ClassTeam.dart';
 import '../NFC/NFC_North.dart';
 
-final List<Team> NfcNorthTeams = [
+final List<Team> nfcNorthTeams = [
   Team(
     name: Lions.name,
     id: Lions.id,
