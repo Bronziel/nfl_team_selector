@@ -1,0 +1,53 @@
+import '../ClassTeam.dart';
+import '../NFC/NFC_South.dart';
+
+final List<Team> nfcSouthTeams = [
+  Team(
+    name: Saints.name,
+    id: Saints.id,
+    normalImagePath: Saints.normalImagePath,
+    winImagePath: Saints.winImagePath,
+    mainColor: Saints.mainColor,
+    colors: Saints.colors,
+    division: Saints.division,
+    conference: Saints.conference,
+    city: Saints.city,
+    state: Saints.state,
+  ),
+  Team(
+    name: Buccaneers.name,
+    id: Buccaneers.id,
+    normalImagePath: Buccaneers.normalImagePath,
+    winImagePath: Buccaneers.winImagePath,
+    mainColor: Buccaneers.mainColor,
+    colors: Buccaneers.colors,
+    division: Buccaneers.division,
+    conference: Buccaneers.conference,
+    city: Buccaneers.city,
+    state: Buccaneers.state,
+  ),
+  Team(
+    name: Falcons.name,
+    id: Falcons.id,
+    normalImagePath: Falcons.normalImagePath,
+    winImagePath: Falcons.winImagePath,
+    mainColor: Falcons.mainColor,
+    colors: Falcons.colors,
+    division: Falcons.division,
+    conference: Falcons.conference,
+    city: Falcons.city,
+    state: Falcons.state,
+  ),
+  Team(
+    name: Panthers.name,
+    id: Panthers.id,
+    normalImagePath: Panthers.normalImagePath,
+    winImagePath: Panthers.winImagePath,
+    mainColor: Panthers.mainColor,
+    colors: Panthers.colors,
+    division: Panthers.division,
+    conference: Panthers.conference,
+    city: Panthers.city,
+    state: Panthers.state,
+  ),
+];
