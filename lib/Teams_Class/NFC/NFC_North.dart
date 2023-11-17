@@ -6,7 +6,7 @@ class Lions {
   static const String normalImagePath =
       'web/assets/Team/NFC/NFC_North/lions.jpg';
   static const String winImagePath =
-      'web/assets/winner/NFC/NFC_North/lions.jpg';
+      'web/assets/winner/NFC/NFC_North/lions-01.jpg';
 
   static const Color mainColor = Color(0xFF0076B6); //Blue
   static const List<Color> colors = [
@@ -26,7 +26,7 @@ class Vikings {
   static const String normalImagePath =
       'web/assets/Team/NFC/NFC_North/vikings.jpg';
   static const String winImagePath =
-      'web/assets/winner/NFC/NFC_North/vikings.jpg';
+      'web/assets/winner/NFC/NFC_North/vikings-01.jpg';
 
   static const Color mainColor = Color(0xFF4F2683); //Purple
   static const List<Color> colors = [
@@ -43,7 +43,8 @@ class Packers {
   static const int id = 3;
   static const String normalImagePath =
       'web/assets/Team/NFC/NFC_North/packers.jpg';
-  static const String winImagePath = 'web/assets/Team/NFC/NFC_North/';
+  static const String winImagePath =
+      'web/assets/winner/NFC/NFC_North/packers-01.jpg';
 
   static const Color mainColor = Color(0xFF203731); // Green
   static const List<Color> colors = [
@@ -60,8 +61,10 @@ class Packers {
 class Bears {
   static const String name = 'Chicago Bears';
   static const int id = 4;
-  static const String normalImagePath = 'web/assets/Team/NFC/NFC_North/';
-  static const String winImagePath = 'web/assets/Team/NFC/NFC_North/';
+  static const String normalImagePath =
+      'web/assets/Team/NFC/NFC_North/bears.jpg';
+  static const String winImagePath =
+      'web/assets/winner/NFC/NFC_North/bears-01.jpg';
 
   static const Color mainColor = Color(0xFF0B162A); //dark blue
   static const List<Color> colors = [

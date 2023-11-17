@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Teams_Class/ClassTeam.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,31 +12,12 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Team {
-  final String name;
-  final String mobileImagePath;
-
-  Team({required this.name, required this.mobileImagePath});
-}
-
 class TeamSelector extends StatefulWidget {
   @override
   _TeamSelectorState createState() => _TeamSelectorState();
 }
 
 class _TeamSelectorState extends State<TeamSelector> {
-  final List<Team> allTeams = [
-    Team(
-      name: 'Ravens',
-      mobileImagePath: 'web/assets/mobileteam/AFC/AFC_North/ravensMobile.jpg',
-    ),
-    Team(
-      name: 'Bengals',
-      mobileImagePath: 'web/assets/mobileteam/AFC/AFC_North/bengalsMobile.jpg',
-    ),
-    // Add more teams if needed
-  ];
-
   late List<Team> currentTeams;
   Map<String, int> teamVotes = {};
 
@@ -58,21 +40,10 @@ class _TeamSelectorState extends State<TeamSelector> {
     });
   }
 
-  // Helper function to create a constrained image widget
   Widget _teamImageWidget(Team team) {
     Color backgroundColor;
 
-    switch (team.name) {
-      case 'Ravens':
-        backgroundColor = Color(0xFF241773); // Powder Blue for Ravens
-        break;
-      case 'Bengals':
-        backgroundColor = Color(0xFF000000); // Black for Bengals
-        break;
-      default:
-        backgroundColor =
-            const Color.fromARGB(255, 153, 18, 18); // Default background color
-    }
+    backgroundColor = team.mainColor;
 
     return Container(
       margin: const EdgeInsets.all(8.0),
@@ -96,7 +67,7 @@ class _TeamSelectorState extends State<TeamSelector> {
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Image.asset(
-                    team.mobileImagePath,
+                    team.normalImagePath,
                     fit: BoxFit.contain,
                   ),
                 ),
@@ -118,7 +89,7 @@ class _TeamSelectorState extends State<TeamSelector> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('This is your team'),
+            const Text('This is your team'),
             _teamImageWidget(winnerTeam),
             Text(winnerTeam.name),
           ],
@@ -126,7 +97,7 @@ class _TeamSelectorState extends State<TeamSelector> {
       );
     }
     return Scaffold(
-      appBar: AppBar(title: Text('Pick Your Team')),
+      appBar: AppBar(title: const Text('Pick Your Team')),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: currentTeams.map((team) => _teamImageWidget(team)).toList(),

@@ -61,9 +61,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - web/assets/
-    - web/assets/Team/AFC/AFC_North/ravens.jpg
-    - web/assets/Team/AFC/AFC_North/bengals.jpg
-    - web/assets/Team/
+    - web/assets/Team/AFC/AFC_North/
+    - web/assets/Team/NFC/NFC_North/
     - web/assets/winner/
   
     
