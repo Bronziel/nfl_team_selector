@@ -4,6 +4,7 @@ import 'NFC/NFC_North.dart';
 
 class Team {
   final String name;
+  final int id; // Add the id property
   final String normalImagePath;
   final String winImagePath;
   final Color mainColor; // Main team color
@@ -15,6 +16,7 @@ class Team {
 
   Team({
     required this.name,
+    required this.id, // Include id in the constructor
     required this.normalImagePath,
     required this.winImagePath,
     required this.mainColor,
@@ -29,6 +31,7 @@ class Team {
 final List<Team> allTeams = [
   Team(
     name: Ravens.name,
+    id: Ravens.id,
     normalImagePath: Ravens.normalImagePath,
     winImagePath: Ravens.winImagePath,
     mainColor: Ravens.mainColor,
@@ -40,6 +43,7 @@ final List<Team> allTeams = [
   ),
   Team(
     name: Steelers.name,
+    id: Steelers.id,
     normalImagePath: Steelers.normalImagePath,
     winImagePath: Steelers.winImagePath,
     mainColor: Steelers.mainColor,
@@ -51,6 +55,7 @@ final List<Team> allTeams = [
   ),
   Team(
     name: Browns.name,
+    id: Browns.id,
     normalImagePath: Browns.normalImagePath,
     winImagePath: Browns.winImagePath,
     mainColor: Browns.mainColor,
@@ -62,6 +67,7 @@ final List<Team> allTeams = [
   ),
   Team(
     name: Bengals.name,
+    id: Bengals.id,
     normalImagePath: Bengals.normalImagePath,
     winImagePath: Bengals.winImagePath,
     mainColor: Bengals.mainColor,
