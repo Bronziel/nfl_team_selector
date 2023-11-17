@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
-import 'AFC Team List/AfcNorthTeamList.dart';
+import 'package:select_team/Teams_Class/NFC%20Team%20List/NfcWestTeamList.dart';
+
 import 'NFC Team List/NfcNorthTeamList.dart';
+import 'NFC Team List/NfcEastTeamList.dart';
+import 'NFC Team List/NfcWestTeamList.dart';
+import 'NFC Team List/NfcSouthTeamList.dart';
+
+import 'AFC Team List/AfcNorthTeamList.dart';
+import 'AFC Team List/AfcWestTeamList.dart';
+import 'AFC Team List/AfcEastTeamList.dart';
+import 'AFC Team List/AfcSouthTeamList.dart';
 
 class Team {
   final String name;
@@ -30,9 +39,22 @@ class Team {
 
 final List<Team> nfcTeams = [
   ...nfcNorthTeams,
+  ...nfcWestTeams,
+  ...nfcEastTeams,
+  ...nfcSouthTeams,
+  ...afcNorthTeams,
+  ...afcWestTeams,
+  ...afcEastTeams,
+  ...afcSouthTeams,
 ];
 final List<Team> allTeams = [
   ...afcNorthTeams,
   ...nfcNorthTeams,
+  ...nfcWestTeams,
+  ...nfcEastTeams,
+  ...nfcSouthTeams,
+  ...afcEastTeams,
+  ...afcSouthTeams,
+
   // Add other division and conference lists here
 ];

@@ -31,77 +31,187 @@ class _TeamSelectorState extends State<TeamSelector> {
   }
 
   void _selectTeam(Team selectedTeam) {
-    setState(() {
+    // Find the index of the selected team in the current list
+    final index =
+        currentTeams.indexWhere((team) => team.name == selectedTeam.name);
+
+    if (index >= 0) {
       teamVotes[selectedTeam.name] = teamVotes[selectedTeam.name]! + 1;
-      currentTeams.remove(selectedTeam);
-      if (currentTeams.isEmpty) {
-        currentTeams = List.of(allTeams);
+      currentTeams.removeAt(index);
+
+      // If there's only one team left, declare it as the winner
+      if (currentTeams.length == 1) {
+        final winner = currentTeams[0];
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('Winner: ${winner.name}'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('Congratulations to ${winner.name}!'),
+                  Image.asset(
+                    winner.normalImagePath,
+                    fit: BoxFit.contain,
+                    width: 100,
+                    height: 100,
+                  ),
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('Close'),
+                ),
+              ],
+            );
+          },
+        );
       }
-    });
+    }
+
+    // Proceed to the next pair of teams
+    _showNextPairOfTeams();
   }
 
-  Widget _teamImageWidget(Team team) {
-    Color backgroundColor;
-
-    backgroundColor = team.mainColor;
-
-    return Container(
-      margin: const EdgeInsets.all(8.0),
-      width: 600,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Container(
-            height: 600,
-            decoration: BoxDecoration(
-              color: backgroundColor,
-              border: Border.all(color: Colors.grey),
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: GestureDetector(
-                onTap: () {
-                  _selectTeam(team);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Image.asset(
-                    team.normalImagePath,
-                    fit: BoxFit.contain,
-                  ),
+  void _showNextPairOfTeams() {
+    if (currentTeams.length >= 2) {
+      final team1 = currentTeams[0];
+      final team2 = currentTeams[1];
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Select the Winner'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('Click on the team you think should win:'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                        _selectTeam(team1);
+                      },
+                      child: Column(
+                        children: [
+                          Text(team1.name),
+                          Image.asset(
+                            team1.normalImagePath,
+                            fit: BoxFit.contain,
+                            width: 100,
+                            height: 100,
+                          ),
+                        ],
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                        _selectTeam(team2);
+                      },
+                      child: Column(
+                        children: [
+                          Text(team2.name),
+                          Image.asset(
+                            team2.normalImagePath,
+                            fit: BoxFit.contain,
+                            width: 100,
+                            height: 100,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
-              ),
+              ],
             ),
-          ),
-        ],
-      ),
-    );
+          );
+        },
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (currentTeams.length < 2) {
-      final winner =
-          teamVotes.entries.reduce((a, b) => a.value > b.value ? a : b).key;
-      final winnerTeam = allTeams.firstWhere((t) => t.name == winner);
-      return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+    // Initially, show the first pair of teams
+    if (currentTeams.length >= 2) {
+      final team1 = currentTeams[0];
+      final team2 = currentTeams[1];
+      return AlertDialog(
+        title: Text('Select the Winner'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            const Text('This is your team'),
-            _teamImageWidget(winnerTeam),
-            Text(winnerTeam.name),
+            Text('Click on the team you think should win:'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    _selectTeam(team1);
+                  },
+                  child: Column(
+                    children: [
+                      Text(team1.name),
+                      Image.asset(
+                        team1.normalImagePath,
+                        fit: BoxFit.contain,
+                        width: 100,
+                        height: 100,
+                      ),
+                    ],
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    _selectTeam(team2);
+                  },
+                  child: Column(
+                    children: [
+                      Text(team2.name),
+                      Image.asset(
+                        team2.normalImagePath,
+                        fit: BoxFit.contain,
+                        width: 100,
+                        height: 100,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       );
+    } else {
+      // If there's only one team left, display the winner
+      final winner = currentTeams.isNotEmpty ? currentTeams[0] : null;
+      return Scaffold(
+        appBar: AppBar(title: Text('Winner')),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Winner: ${winner?.name ?? "No winner"}'),
+              if (winner != null)
+                Image.asset(
+                  winner.normalImagePath,
+                  fit: BoxFit.contain,
+                  width: 200,
+                  height: 200,
+                ),
+            ],
+          ),
+        ),
+      );
     }
-    return Scaffold(
-      appBar: AppBar(title: const Text('Pick Your Team')),
-      body: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: currentTeams.map((team) => _teamImageWidget(team)).toList(),
-      ),
-    );
   }
 }
