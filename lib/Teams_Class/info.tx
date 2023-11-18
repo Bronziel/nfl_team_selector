@@ -1,0 +1,28 @@
+NFC 1-16 AFC 17-32
+NFC North 1-4 NFC West 5-8
+NFC East 9-12 NFC South 13-16
+
+AFC North 17-20  AFC West 21-24
+AFC West 25-28  AFC South 29-32
+web/assets/Team/NFC/
+web/assets/Team/AFC/
+
+web/assets/Team/NFC/NFC_North/
+web/assets/Team/NFC/NFC_West/
+web/assets/Team/NFC/NFC_East/
+web/assets/Team/NFC/NFC_South/
+
+web/assets/winner/NFC/NFC_North/
+web/assets/winner/NFC/NFC_West/
+web/assets/winner/NFC/NFC_East/
+web/assets/winner/NFC/NFC_South/
+
+web/assets/Team/AFC/AFC_North/
+web/assets/Team/AFC/AFC_West/
+web/assets/Team/AFC/AFC_East/
+web/assets/Team/AFC/AFC_South/
+
+web/assets/winner/AFC/AFC_North/
+web/assets/winner/AFC/AFC_West/
+web/assets/winner/AFC/AFC_East/
+web/assets/winner/AFC/AFC_South/

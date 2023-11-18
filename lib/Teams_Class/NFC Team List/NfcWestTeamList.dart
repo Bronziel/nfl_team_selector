@@ -1,0 +1,53 @@
+import '../ClassTeam.dart';
+import '../NFC/NFC_West.dart';
+
+final List<Team> nfcWestTeams = [
+  Team(
+    name: SF49ers.name,
+    id: SF49ers.id,
+    normalImagePath: SF49ers.normalImagePath,
+    winImagePath: SF49ers.winImagePath,
+    mainColor: SF49ers.mainColor,
+    colors: SF49ers.colors,
+    division: SF49ers.division,
+    conference: SF49ers.conference,
+    city: SF49ers.city,
+    state: SF49ers.state,
+  ),
+  Team(
+    name: SeaHawks.name,
+    id: SeaHawks.id,
+    normalImagePath: SeaHawks.normalImagePath,
+    winImagePath: SeaHawks.winImagePath,
+    mainColor: SeaHawks.mainColor,
+    colors: SeaHawks.colors,
+    division: SeaHawks.division,
+    conference: SeaHawks.conference,
+    city: SeaHawks.city,
+    state: SeaHawks.state,
+  ),
+  Team(
+    name: Rams.name,
+    id: Rams.id,
+    normalImagePath: Rams.normalImagePath,
+    winImagePath: Rams.winImagePath,
+    mainColor: Rams.mainColor,
+    colors: Rams.colors,
+    division: Rams.division,
+    conference: Rams.conference,
+    city: Rams.city,
+    state: Rams.state,
+  ),
+  Team(
+    name: Cardinals.name,
+    id: Cardinals.id,
+    normalImagePath: Cardinals.normalImagePath,
+    winImagePath: Cardinals.winImagePath,
+    mainColor: Cardinals.mainColor,
+    colors: Cardinals.colors,
+    division: Cardinals.division,
+    conference: Cardinals.conference,
+    city: Cardinals.city,
+    state: Cardinals.state,
+  ),
+];

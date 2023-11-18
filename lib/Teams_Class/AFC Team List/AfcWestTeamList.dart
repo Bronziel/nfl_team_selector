@@ -1,0 +1,53 @@
+import '../AFC/AFC_West.dart';
+import '../ClassTeam.dart';
+
+final List<Team> afcWestTeams = [
+  Team(
+    name: Chiefs.name,
+    id: Chiefs.id,
+    normalImagePath: Chiefs.normalImagePath,
+    winImagePath: Chiefs.winImagePath,
+    mainColor: Chiefs.mainColor,
+    colors: Chiefs.colors,
+    division: Chiefs.division,
+    conference: Chiefs.conference,
+    city: Chiefs.city,
+    state: Chiefs.state,
+  ),
+  Team(
+    name: Raiders.name,
+    id: Raiders.id,
+    normalImagePath: Raiders.normalImagePath,
+    winImagePath: Raiders.winImagePath,
+    mainColor: Raiders.mainColor,
+    colors: Raiders.colors,
+    division: Raiders.division,
+    conference: Raiders.conference,
+    city: Raiders.city,
+    state: Raiders.state,
+  ),
+  Team(
+    name: Chargers.name,
+    id: Chargers.id,
+    normalImagePath: Chargers.normalImagePath,
+    winImagePath: Chargers.winImagePath,
+    mainColor: Chargers.mainColor,
+    colors: Chargers.colors,
+    division: Chargers.division,
+    conference: Chargers.conference,
+    city: Chargers.city,
+    state: Chargers.state,
+  ),
+  Team(
+    name: Broncos.name,
+    id: Broncos.id,
+    normalImagePath: Broncos.normalImagePath,
+    winImagePath: Broncos.winImagePath,
+    mainColor: Broncos.mainColor,
+    colors: Broncos.colors,
+    division: Broncos.division,
+    conference: Broncos.conference,
+    city: Broncos.city,
+    state: Broncos.state,
+  ),
+];

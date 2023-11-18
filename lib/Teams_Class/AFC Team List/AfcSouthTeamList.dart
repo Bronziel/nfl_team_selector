@@ -1,0 +1,53 @@
+import '../AFC/AFC_South.dart';
+import '../ClassTeam.dart';
+
+final List<Team> afcSouthTeams = [
+  Team(
+    name: Jaguars.name,
+    id: Jaguars.id,
+    normalImagePath: Jaguars.normalImagePath,
+    winImagePath: Jaguars.winImagePath,
+    mainColor: Jaguars.mainColor,
+    colors: Jaguars.colors,
+    division: Jaguars.division,
+    conference: Jaguars.conference,
+    city: Jaguars.city,
+    state: Jaguars.state,
+  ),
+  Team(
+    name: Texans.name,
+    id: Texans.id,
+    normalImagePath: Texans.normalImagePath,
+    winImagePath: Texans.winImagePath,
+    mainColor: Texans.mainColor,
+    colors: Texans.colors,
+    division: Texans.division,
+    conference: Texans.conference,
+    city: Texans.city,
+    state: Texans.state,
+  ),
+  Team(
+    name: Colts.name,
+    id: Colts.id,
+    normalImagePath: Colts.normalImagePath,
+    winImagePath: Colts.winImagePath,
+    mainColor: Colts.mainColor,
+    colors: Colts.colors,
+    division: Colts.division,
+    conference: Colts.conference,
+    city: Colts.city,
+    state: Colts.state,
+  ),
+  Team(
+    name: Titans.name,
+    id: Titans.id,
+    normalImagePath: Titans.normalImagePath,
+    winImagePath: Titans.winImagePath,
+    mainColor: Titans.mainColor,
+    colors: Titans.colors,
+    division: Titans.division,
+    conference: Titans.conference,
+    city: Titans.city,
+    state: Titans.state,
+  ),
+];

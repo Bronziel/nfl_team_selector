@@ -1,0 +1,53 @@
+import '../ClassTeam.dart';
+import '../NFC/NFC_North.dart';
+
+final List<Team> nfcNorthTeams = [
+  Team(
+    name: Lions.name,
+    id: Lions.id,
+    normalImagePath: Lions.normalImagePath,
+    winImagePath: Lions.winImagePath,
+    mainColor: Lions.mainColor,
+    colors: Lions.colors,
+    division: Lions.division,
+    conference: Lions.conference,
+    city: Lions.city,
+    state: Lions.state,
+  ),
+  Team(
+    name: Vikings.name,
+    id: Vikings.id,
+    normalImagePath: Vikings.normalImagePath,
+    winImagePath: Vikings.winImagePath,
+    mainColor: Vikings.mainColor,
+    colors: Vikings.colors,
+    division: Vikings.division,
+    conference: Vikings.conference,
+    city: Vikings.city,
+    state: Vikings.state,
+  ),
+  Team(
+    name: Packers.name,
+    id: Packers.id,
+    normalImagePath: Packers.normalImagePath,
+    winImagePath: Packers.winImagePath,
+    mainColor: Packers.mainColor,
+    colors: Packers.colors,
+    division: Packers.division,
+    conference: Packers.conference,
+    city: Packers.city,
+    state: Packers.state,
+  ),
+  Team(
+    name: Bears.name,
+    id: Bears.id,
+    normalImagePath: Bears.normalImagePath,
+    winImagePath: Bears.winImagePath,
+    mainColor: Bears.mainColor,
+    colors: Bears.colors,
+    division: Bears.division,
+    conference: Bears.conference,
+    city: Bears.city,
+    state: Bears.state,
+  ),
+];
