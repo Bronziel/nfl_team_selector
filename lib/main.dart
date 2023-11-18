@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Teams_Class/ClassTeam.dart';
+import 'dart:math';
 
 void main() => runApp(MyApp());
 
@@ -19,18 +20,20 @@ class TeamSelector extends StatefulWidget {
 
 class _TeamSelectorState extends State<TeamSelector> {
   late List<Team> remainingTeams;
-  late Team currentTeam1;
-  late Team currentTeam2;
-  late bool isFinalRound;
+  Team team1 = _getRandomTeam();
+  Team team2 = _getRandomTeam();
   Map<String, int> teamVotes = {};
+
+  static Team _getRandomTeam() {
+    final random = Random();
+    final index = random.nextInt(allTeams.length);
+    return allTeams[index];
+  }
 
   @override
   void initState() {
     super.initState();
     remainingTeams = List.of(allTeams);
-    currentTeam1 = remainingTeams.removeAt(0);
-    currentTeam2 = remainingTeams.removeAt(0);
-    isFinalRound = remainingTeams.isEmpty;
     allTeams.forEach((team) {
       teamVotes[team.name] = 0;
     });
@@ -38,21 +41,10 @@ class _TeamSelectorState extends State<TeamSelector> {
 
   void _selectTeam(Team selectedTeam) {
     teamVotes[selectedTeam.name] = teamVotes[selectedTeam.name]! + 1;
-
-    if (!isFinalRound) {
-      if (remainingTeams.isEmpty) {
-        // Move to the next round
-        remainingTeams = List.of(allTeams);
-        currentTeam1 = remainingTeams.removeAt(0);
-        currentTeam2 = remainingTeams.removeAt(0);
-        isFinalRound = remainingTeams.isEmpty;
-      } else {
-        // Move to the next pair of teams
-        currentTeam1 = remainingTeams.removeAt(0);
-        currentTeam2 = remainingTeams.removeAt(0);
-      }
+    if (remainingTeams.isNotEmpty) {
+      team1 = _getRandomTeam();
+      team2 = _getRandomTeam();
     } else {
-      // Calculate the winner of the final round
       final winner =
           teamVotes.entries.reduce((a, b) => a.value > b.value ? a : b).key;
       final winnerTeam = allTeams.firstWhere((t) => t.name == winner);
@@ -98,29 +90,39 @@ class _TeamSelectorState extends State<TeamSelector> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Select the winner between:'),
+            Text('Select Your Team:'),
             SizedBox(height: 20),
-            Text(currentTeam1.name),
             GestureDetector(
-              onTap: () => _selectTeam(currentTeam1),
-              child: Image.asset(
-                currentTeam1.normalImagePath,
-                fit: BoxFit.contain,
-                width: 100,
-                height: 100,
+              onTap: () => _selectTeam(team1),
+              child: Column(
+                children: [
+                  Text(team1.name),
+                  SizedBox(height: 20),
+                  Image.asset(
+                    team1.normalImagePath,
+                    fit: BoxFit.contain,
+                    width: 200,
+                    height: 200,
+                  ),
+                ],
               ),
             ),
-            Text('vs'),
+            SizedBox(height: 20),
             GestureDetector(
-              onTap: () => _selectTeam(currentTeam2),
-              child: Image.asset(
-                currentTeam2.normalImagePath,
-                fit: BoxFit.contain,
-                width: 100,
-                height: 100,
+              onTap: () => _selectTeam(team2),
+              child: Column(
+                children: [
+                  Text(team2.name),
+                  SizedBox(height: 20),
+                  Image.asset(
+                    team2.normalImagePath,
+                    fit: BoxFit.contain,
+                    width: 200,
+                    height: 200,
+                  ),
+                ],
               ),
             ),
-            Text(currentTeam2.name),
           ],
         ),
       ),
