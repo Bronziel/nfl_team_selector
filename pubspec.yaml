@@ -62,7 +62,24 @@ flutter:
   assets:
     - web/assets/
     - web/assets/Team/AFC/AFC_North/
+    - web/assets/Team/AFC/AFC_West/
+    - web/assets/Team/AFC/AFC_East/
+    - web/assets/Team/AFC/AFC_South/
     - web/assets/Team/NFC/NFC_North/
+    - web/assets/Team/NFC/NFC_West/
+    - web/assets/Team/NFC/NFC_East/
+    - web/assets/Team/NFC/NFC_South/
+
+    - web/assets/winner/NFC/NFC_North/
+    - web/assets/winner/NFC/NFC_West/
+    - web/assets/winner/NFC/NFC_East/
+    - web/assets/winner/NFC/NFC_South/
+
+    - web/assets/winner/AFC/AFC_North/
+    - web/assets/winner/AFC/AFC_West/
+    - web/assets/winner/AFC/AFC_East/
+    - web/assets/winner/AFC/AFC_South/
+
     - web/assets/winner/
   
     
