@@ -118,7 +118,7 @@ class _TeamSelectorState extends State<TeamSelector> {
     return Scaffold(
       appBar: AppBar(title: Text('Team Selector')),
       body: Center(
-        child: Column(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Select Your Team:'),
