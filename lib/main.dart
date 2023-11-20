@@ -87,27 +87,36 @@ class _TeamSelectorState extends State<TeamSelector> {
     return Scaffold(
       appBar: AppBar(title: Text('Team Selector')),
       body: Center(
-        child: Column(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Select Your Team:'),
-            SizedBox(height: 20),
+            SizedBox(
+              height: 20,
+              width: 20,
+            ),
             GestureDetector(
               onTap: () => _selectTeam(team1),
               child: Column(
                 children: [
                   Text(team1.name),
-                  SizedBox(height: 20),
+                  SizedBox(
+                    height: 20,
+                    width: 20,
+                  ),
                   Image.asset(
                     team1.normalImagePath,
                     fit: BoxFit.contain,
-                    width: 200,
-                    height: 200,
+                    width: 400,
+                    height: 400,
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(
+              height: 20,
+              width: 20,
+            ),
             GestureDetector(
               onTap: () => _selectTeam(team2),
               child: Column(
@@ -117,8 +126,8 @@ class _TeamSelectorState extends State<TeamSelector> {
                   Image.asset(
                     team2.normalImagePath,
                     fit: BoxFit.contain,
-                    width: 200,
-                    height: 200,
+                    width: 400,
+                    height: 400,
                   ),
                 ],
               ),
