@@ -20,66 +20,81 @@ class TeamSelector extends StatefulWidget {
 
 class _TeamSelectorState extends State<TeamSelector> {
   late List<Team> remainingTeams;
-  Team team1 = _getRandomTeam();
-  Team team2 = _getRandomTeam();
-  Map<String, int> teamVotes = {};
-
-  static Team _getRandomTeam() {
-    final random = Random();
-    final index = random.nextInt(allTeams.length);
-    return allTeams[index];
-  }
+  Team? team1;
+  Team? team2;
 
   @override
   void initState() {
     super.initState();
-    remainingTeams = List.of(allTeams);
-    allTeams.forEach((team) {
-      teamVotes[team.name] = 0;
-    });
+    remainingTeams = List.of(allTeams); // Make a copy of all teams
+    _pickInitialTeams();
+  }
+
+  void _pickInitialTeams() {
+    team1 = _getRandomTeam();
+    do {
+      team2 = _getRandomTeam();
+    } while (team1!.id == team2!.id); // Ensure team2 is different from team1
+  }
+
+  Team _getRandomTeam() {
+    final random = Random();
+    final index = random.nextInt(remainingTeams.length);
+    return remainingTeams[index];
   }
 
   void _selectTeam(Team selectedTeam) {
-    teamVotes[selectedTeam.name] = teamVotes[selectedTeam.name]! + 1;
-    if (remainingTeams.isNotEmpty) {
-      team1 = _getRandomTeam();
-      team2 = _getRandomTeam();
-    } else {
-      final winner =
-          teamVotes.entries.reduce((a, b) => a.value > b.value ? a : b).key;
-      final winnerTeam = allTeams.firstWhere((t) => t.name == winner);
+    setState(() {
+      remainingTeams.remove(
+          selectedTeam); // Remove the selected team from the remaining teams
+      if (remainingTeams.isNotEmpty) {
+        // Replace the non-selected team with the next team with the lowest ID
+        Team nonSelectedTeam = (team1!.id == selectedTeam.id) ? team2! : team1!;
+        remainingTeams.remove(nonSelectedTeam);
+        Team nextTeam = remainingTeams.reduce((a, b) => a.id < b.id ? a : b);
+        if (team1!.id == selectedTeam.id) {
+          team2 = nextTeam;
+        } else {
+          team1 = nextTeam;
+        }
+        remainingTeams
+            .add(nonSelectedTeam); // Add the non-selected team back to the pool
+      } else {
+        // Handle the case when only one team is left
+        _showWinner(selectedTeam);
+      }
+    });
+  }
 
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Winner: ${winnerTeam.name}'),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('Congratulations to ${winnerTeam.name}!'),
-                Image.asset(
-                  winnerTeam.normalImagePath,
-                  fit: BoxFit.contain,
-                  width: 100,
-                  height: 100,
-                ),
-              ],
-            ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('Close'),
+  void _showWinner(Team winnerTeam) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Winner: ${winnerTeam.name}'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('Congratulations to ${winnerTeam.name}!'),
+              Image.asset(
+                winnerTeam.normalImagePath,
+                fit: BoxFit.contain,
+                width: 100,
+                height: 100,
               ),
             ],
-          );
-        },
-      );
-    }
-
-    setState(() {});
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -91,47 +106,43 @@ class _TeamSelectorState extends State<TeamSelector> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Select Your Team:'),
+            SizedBox(height: 20),
+            if (team1 != null) // Check if team1 is not null
+              GestureDetector(
+                onTap: () => _selectTeam(team1!),
+                child: Column(
+                  children: [
+                    Text(team1!.name),
+                    SizedBox(height: 20),
+                    Image.asset(
+                      team1!.normalImagePath,
+                      fit: BoxFit.contain,
+                      width: 400,
+                      height: 400,
+                    ),
+                  ],
+                ),
+              ),
             SizedBox(
               height: 20,
               width: 20,
             ),
-            GestureDetector(
-              onTap: () => _selectTeam(team1),
-              child: Column(
-                children: [
-                  Text(team1.name),
-                  SizedBox(
-                    height: 20,
-                    width: 20,
-                  ),
-                  Image.asset(
-                    team1.normalImagePath,
-                    fit: BoxFit.contain,
-                    width: 400,
-                    height: 400,
-                  ),
-                ],
+            if (team2 != null) // Check if team2 is not null
+              GestureDetector(
+                onTap: () => _selectTeam(team2!),
+                child: Column(
+                  children: [
+                    Text(team2!.name),
+                    SizedBox(height: 20),
+                    Image.asset(
+                      team2!.normalImagePath,
+                      fit: BoxFit.contain,
+                      width: 400,
+                      height: 400,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(
-              height: 20,
-              width: 20,
-            ),
-            GestureDetector(
-              onTap: () => _selectTeam(team2),
-              child: Column(
-                children: [
-                  Text(team2.name),
-                  SizedBox(height: 20),
-                  Image.asset(
-                    team2.normalImagePath,
-                    fit: BoxFit.contain,
-                    width: 400,
-                    height: 400,
-                  ),
-                ],
-              ),
-            ),
           ],
         ),
       ),
