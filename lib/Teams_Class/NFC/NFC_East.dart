@@ -6,7 +6,7 @@ class Eagles {
   static const String normalImagePath =
       'web/assets/Team/NFC/NFC_East/eagles.jpg';
   static const String winImagePath =
-      'web/assets/winner/NFC/NFC_North/eagles-01.jpg';
+      'web/assets/winner/NFC/NFC_East/eagles-01.jpg';
 
   static const Color mainColor = Color(0xFF004C54); //midnight green
   static const List<Color> colors = [
@@ -27,7 +27,7 @@ class Cowboys {
   static const String normalImagePath =
       'web/assets/Team/NFC/NFC_East/cowboys.jpg';
   static const String winImagePath =
-      'web/assets/winner/NFC/NFC_North/cowboys-01.jpg';
+      'web/assets/winner/NFC/NFC_East/cowboys-01.jpg';
 
   static const Color mainColor = Color(0xFF003594); //royal blue numbers
   static const List<Color> colors = [
@@ -48,7 +48,7 @@ class Commanders {
   static const String normalImagePath =
       'web/assets/Team/NFC/NFC_East/commanders.jpg';
   static const String winImagePath =
-      'web/assets/winner/NFC/NFC_North/commanders-01.jpg';
+      'web/assets/winner/NFC/NFC_East/commanders-01.jpg';
 
   static const Color mainColor = Color(0xFF5A1414); //burgundy
   static const List<Color> colors = [
@@ -66,7 +66,7 @@ class Giants {
   static const String normalImagePath =
       'web/assets/Team/NFC/NFC_East/giants.jpg';
   static const String winImagePath =
-      'web/assets/winner/NFC/NFC_North/giants-01.jpg';
+      'web/assets/winner/NFC/NFC_East/giants-01.jpg';
 
   static const Color mainColor = Color(0xFF0B2265); //dark blue
   static const List<Color> colors = [

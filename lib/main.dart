@@ -153,27 +153,30 @@ class WinnerPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Winner'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Congratulations to ${winner.name}!',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 20),
-            Image.asset(
-              winner.winImagePath,
-              fit: BoxFit.contain,
-            ),
-            SizedBox(height: 20),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // Go back to the previous screen
-              },
-              child: Text('Back to Selection'),
-            ),
-          ],
+      body: SingleChildScrollView(
+        // Wrap content in a SingleChildScrollView
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Congratulations to ${winner.name}!',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 20),
+              Image.asset(
+                winner.winImagePath,
+                fit: BoxFit.contain,
+              ),
+              SizedBox(height: 20),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(); // Go back to the previous screen
+                },
+                child: Text('Back to Selection'),
+              ),
+            ],
+          ),
         ),
       ),
     );
