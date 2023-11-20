@@ -26,15 +26,21 @@ class _TeamSelectorState extends State<TeamSelector> {
   @override
   void initState() {
     super.initState();
-    remainingTeams = List.of(allTeams); // Make a copy of all teams
+    remainingTeams = List.of(allTeams); // Initialize with all teams
+    print(
+        'All teams initialized: ${remainingTeams.map((team) => team.name).join(', ')}'); // Print all teams
     _pickInitialTeams();
   }
 
   void _pickInitialTeams() {
+    // Pick two distinct initial teams
     team1 = _getRandomTeam();
     do {
       team2 = _getRandomTeam();
-    } while (team1!.id == team2!.id); // Ensure team2 is different from team1
+    } while (team1!.id == team2!.id);
+
+    print(
+        'Initial random teams: ${team1!.name} and ${team2!.name}'); // Print initial teams
   }
 
   Team _getRandomTeam() {
@@ -45,28 +51,38 @@ class _TeamSelectorState extends State<TeamSelector> {
 
   void _selectTeam(Team selectedTeam) {
     setState(() {
-      remainingTeams.remove(
-          selectedTeam); // Remove the selected team from the remaining teams
-      if (remainingTeams.isNotEmpty) {
-        // Replace the non-selected team with the next team with the lowest ID
-        Team nonSelectedTeam = (team1!.id == selectedTeam.id) ? team2! : team1!;
-        remainingTeams.remove(nonSelectedTeam);
-        Team nextTeam = remainingTeams.reduce((a, b) => a.id < b.id ? a : b);
+      // Find the ID of the non-selected team
+      int nonSelectedTeamId =
+          (team1!.id == selectedTeam.id) ? team2!.id : team1!.id;
+
+      // Remove the non-selected team
+      remainingTeams.removeWhere((team) => team.id == nonSelectedTeamId);
+
+      // Update the team1 and team2 for the next round
+      if (remainingTeams.length > 1) {
+        // If the selected team was team1, keep it and find a new team2
+        // If the selected team was team2, keep it and find a new team1
         if (team1!.id == selectedTeam.id) {
-          team2 = nextTeam;
+          team2 = _getNextLowestIdTeam(team1!);
         } else {
-          team1 = nextTeam;
+          team1 = _getNextLowestIdTeam(team2!);
         }
-        remainingTeams
-            .add(nonSelectedTeam); // Add the non-selected team back to the pool
-      } else {
-        // Handle the case when only one team is left
+      } else if (remainingTeams.length == 1) {
+        // Only one team left, declare as winner
         _showWinner(selectedTeam);
       }
     });
   }
 
+  Team _getNextLowestIdTeam(Team currentTeam) {
+    return remainingTeams
+        .where((team) => team.id != currentTeam.id)
+        .reduce((a, b) => a.id < b.id ? a : b);
+  }
+
   void _showWinner(Team winnerTeam) {
+    // Show the winner dialog
+    print('Winner: ${winnerTeam.name}'); // Print the winner
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -102,7 +118,7 @@ class _TeamSelectorState extends State<TeamSelector> {
     return Scaffold(
       appBar: AppBar(title: Text('Team Selector')),
       body: Center(
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Select Your Team:'),
