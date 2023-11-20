@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Teams_Class/ClassTeam.dart';
 import 'dart:math';
+import 'winLandingPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -81,35 +82,10 @@ class _TeamSelectorState extends State<TeamSelector> {
   }
 
   void _showWinner(Team winnerTeam) {
-    // Show the winner dialog
-    print('Winner: ${winnerTeam.name}'); // Print the winner
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('Winner: ${winnerTeam.name}'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text('Congratulations to ${winnerTeam.name}!'),
-              Image.asset(
-                winnerTeam.winImagePath,
-                fit: BoxFit.contain,
-                width: 100,
-                height: 100,
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('Close'),
-            ),
-          ],
-        );
-      },
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => WinnerPage(winner: winnerTeam),
+      ),
     );
   }
 
@@ -159,6 +135,44 @@ class _TeamSelectorState extends State<TeamSelector> {
                   ],
                 ),
               ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class WinnerPage extends StatelessWidget {
+  final Team winner;
+
+  const WinnerPage({Key? key, required this.winner}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Winner'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Congratulations to ${winner.name}!',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 20),
+            Image.asset(
+              winner.winImagePath,
+              fit: BoxFit.contain,
+            ),
+            SizedBox(height: 20),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Go back to the previous screen
+              },
+              child: Text('Back to Selection'),
+            ),
           ],
         ),
       ),
