@@ -93,7 +93,7 @@ class _TeamSelectorState extends State<TeamSelector> {
             children: [
               Text('Congratulations to ${winnerTeam.name}!'),
               Image.asset(
-                winnerTeam.normalImagePath,
+                winnerTeam.winImagePath,
                 fit: BoxFit.contain,
                 width: 100,
                 height: 100,
