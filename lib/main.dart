@@ -182,12 +182,3 @@ class WinnerPage extends StatelessWidget {
     );
   }
 }
-
-class SelectionHistory {
-  Team team1;
-  Team team2;
-  Team? selectedTeam;
-
-  SelectionHistory(
-      {required this.team1, required this.team2, this.selectedTeam});
-}
