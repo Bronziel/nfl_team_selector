@@ -169,7 +169,7 @@ class WinnerPage extends StatelessWidget {
                 fit: BoxFit.contain,
               ),
               SizedBox(height: 20),
-              TextButton(
+              FilledButton(
                 onPressed: () {
                   Navigator.of(context).pop(); // Go back to the previous screen
                 },
@@ -181,4 +181,13 @@ class WinnerPage extends StatelessWidget {
       ),
     );
   }
+}
+
+class SelectionHistory {
+  Team team1;
+  Team team2;
+  Team? selectedTeam;
+
+  SelectionHistory(
+      {required this.team1, required this.team2, this.selectedTeam});
 }
