@@ -98,6 +98,14 @@ class _TeamSelectorState extends State<TeamSelector> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const Text(
+              "Choose Your Team",
+              style: TextStyle(
+                fontSize: 60,
+                fontWeight: FontWeight.w400,
+                fontFamily: 'Leckerli One', // Specify the font family here
+              ),
+            ),
             Container(
               padding:
                   const EdgeInsets.all(10), // Optional: Add padding for spacing
@@ -107,6 +115,7 @@ class _TeamSelectorState extends State<TeamSelector> {
                   width: 2.0, // Set the border width
                 ),
               ),
+
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

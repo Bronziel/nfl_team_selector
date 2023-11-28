@@ -41,3 +41,6 @@ flutter:
     - family: Modak
       fonts:
         - asset: web/assets/fonts/Modak-Regular.ttf
+    - family: Leckerli One
+      fonts:
+        - asset: web/assets/fonts/LeckerliOne-Regular.ttf
