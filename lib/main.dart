@@ -92,66 +92,105 @@ class _TeamSelectorState extends State<TeamSelector> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Team Selector')),
+      appBar: AppBar(title: const Text('Team Selector')),
       body: Center(
-        child: Row(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: 20),
-            if (team1 != null) // Check if team1 is not null
-              GestureDetector(
-                onTap: () => _selectTeam(team1!),
-                child: Column(
-                  children: [
-                    Text(team1!.name),
-                    SizedBox(height: 20),
-                    Container(
-                      width: 400, // Set your desired width
-                      height: 400 *
-                          (3105 /
-                              3446), // Calculate the height to maintain aspect ratio
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(
-                            20), // Adjust the radius as needed
-                        child: Image.asset(
-                          team1!.normalImagePath,
-                          fit: BoxFit
-                              .cover, // Use BoxFit.cover to maintain the aspect ratio
-                        ),
-                      ),
-                    )
-                  ],
+            Container(
+              padding: EdgeInsets.all(10), // Optional: Add padding for spacing
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.blue, // Set the border color
+                  width: 2.0, // Set the border width
                 ),
               ),
-            SizedBox(
-              height: 20,
-              width: 20,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 20),
+                  if (team1 != null) // Check if team1 is not null
+                    GestureDetector(
+                      onTap: () => _selectTeam(team1!),
+                      child: Column(
+                        children: [
+                          Text(team1!.name),
+                          const SizedBox(height: 20),
+                          Container(
+                            width: 400, // Set your desired width
+                            height: 400 *
+                                (3105 /
+                                    3446), // Calculate the height to maintain aspect ratio
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(
+                                  20), // Adjust the radius as needed
+                              child: Image.asset(
+                                team1!.normalImagePath,
+                                fit: BoxFit
+                                    .cover, // Use BoxFit.cover to maintain the aspect ratio
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  Container(
+                    padding:
+                        EdgeInsets.all(10), // Optional: Add padding for spacing
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.blue, // Set the border color
+                        width: 2.0, // Set the border width
+                      ),
+                    ),
+                    child: SizedBox(
+                      height: 20,
+                      width: 200,
+                    ),
+                  ),
+                  Container(
+                    padding:
+                        EdgeInsets.all(10), // Optional: Add padding for spacing
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.blue, // Set the border color
+                        width: 2.0, // Set the border width
+                      ),
+                    ),
+                    child: SizedBox(
+                      height: 20,
+                      width: 200,
+                    ),
+                  ),
+                  if (team2 != null) // Check if team2 is not null
+                    GestureDetector(
+                      onTap: () => _selectTeam(team2!),
+                      child: Column(
+                        children: [
+                          Text(team2!.name),
+                          const SizedBox(height: 20),
+                          Container(
+                            width: 400, // Set your desired width
+                            height: 400 *
+                                (3105 /
+                                    3446), // Calculate the height to maintain aspect ratio
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(
+                                  20), // Adjust the radius as needed
+                              child: Image.asset(
+                                team2!.normalImagePath,
+                                fit: BoxFit
+                                    .cover, // Use BoxFit.cover to maintain the aspect ratio
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                ],
+              ),
             ),
-            if (team2 != null) // Check if team2 is not null
-              GestureDetector(
-                onTap: () => _selectTeam(team2!),
-                child: Column(
-                  children: [
-                    Text(team2!.name),
-                    SizedBox(height: 20),
-                    Container(
-                      width: 400, // Set your desired width
-                      height: 400 *
-                          (3105 /
-                              3446), // Calculate the height to maintain aspect ratio
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(
-                            20), // Adjust the radius as needed
-                        child: Image.asset(
-                          team2!.normalImagePath,
-                          fit: BoxFit
-                              .cover, // Use BoxFit.cover to maintain the aspect ratio
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
           ],
         ),
       ),
