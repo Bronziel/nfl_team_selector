@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'Teams_Class/ClassTeam.dart';
 import 'dart:math';
 import 'winLandingPage.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,22 +14,13 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class TeamSelector extends StatefulWidget {
-  @override
-  _TeamSelectorState createState() => _TeamSelectorState();
-}
-
-class _TeamSelectorState extends State<TeamSelector> {
+class TeamSelectionLogic {
   late List<Team> remainingTeams;
   Team? team1;
   Team? team2;
 
-  @override
-  void initState() {
-    super.initState();
+  TeamSelectionLogic() {
     remainingTeams = List.of(allTeams); // Initialize with all teams
-    print(
-        'All teams initialized: ${remainingTeams.map((team) => team.name).join(', ')}'); // Print all teams
     _pickInitialTeams();
   }
 
@@ -40,9 +30,6 @@ class _TeamSelectorState extends State<TeamSelector> {
     do {
       team2 = _getRandomTeam();
     } while (team1!.id == team2!.id);
-
-    print(
-        'Initial random teams: ${team1!.name} and ${team2!.name}'); // Print initial teams
   }
 
   Team _getRandomTeam() {
@@ -51,7 +38,7 @@ class _TeamSelectorState extends State<TeamSelector> {
     return remainingTeams[index];
   }
 
-  void _selectTeam(Team selectedTeam) {
+void _selectTeam(Team selectedTeam) {
     setState(() {
       // Find the ID of the non-selected team
       int nonSelectedTeamId =
@@ -81,54 +68,25 @@ class _TeamSelectorState extends State<TeamSelector> {
         .where((team) => team.id != currentTeam.id)
         .reduce((a, b) => a.id < b.id ? a : b);
   }
+}
 
-  void _showWinner(Team winnerTeam) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => WinnerPage(winner: winnerTeam),
-      ),
-    );
-  }
+class TeamSelector extends StatefulWidget {
+  @override
+  _TeamSelectorState createState() => _TeamSelectorState();
+}
+
+class _TeamSelectorState extends State<TeamSelector> {
+  final TeamSelectionLogic logic = TeamSelectionLogic();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Text('Team Selector')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    child: SvgPicture.asset(
-                      'web/assets/svg/nfl.svg', // Replace with the path to your first SVG image
-                      width: 235, // Set the width and height as needed
-                      height: 329,
-                    ),
-                  ),
-                  const Text(
-                    "Choose Your Team",
-                    style: TextStyle(
-                      fontSize: 60,
-                      fontWeight: FontWeight.w400,
-                      fontFamily: 'Leckerli One',
-                    ),
-                  ),
-                  SizedBox(
-                    child: SvgPicture.asset(
-                      'web/assets/svg/nfl.svg',
-                      // Replace with the path to your second SVG image
-                      width: 235, // Set the width and height as needed
-                      height: 329,
-                    ),
-                  ),
-                ],
-              ),
-            ),
             Container(
               padding:
                   const EdgeInsets.all(10), // Optional: Add padding for spacing
@@ -138,14 +96,13 @@ class _TeamSelectorState extends State<TeamSelector> {
                   width: 2.0, // Set the border width
                 ),
               ),
-
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(height: 20),
-                  if (team1 != null) // Check if team1 is not null
+                  if (logic.team1 != null) // Check if team1 is not null
                     GestureDetector(
-                      onTap: () => _selectTeam(team1!),
+                      onTap: () => logic.selectTeam(logic.team1!),
                       child: Column(
                         children: [
                           Container(
@@ -157,7 +114,7 @@ class _TeamSelectorState extends State<TeamSelector> {
                               borderRadius: BorderRadius.circular(
                                   20), // Adjust the radius as needed
                               child: Image.asset(
-                                team1!.normalImagePath,
+                                logic.team1!.normalImagePath,
                                 fit: BoxFit
                                     .cover, // Use BoxFit.cover to maintain the aspect ratio
                               ),
@@ -207,9 +164,9 @@ class _TeamSelectorState extends State<TeamSelector> {
                     ),
                   ),
                   const SizedBox(width: 10),
-                  if (team2 != null) // Check if team2 is not null
+                  if (logic.team2 != null) // Check if team2 is not null
                     GestureDetector(
-                      onTap: () => _selectTeam(team2!),
+                      onTap: () => logic.selectTeam(logic.team2!),
                       child: Column(
                         children: [
                           Container(
@@ -221,7 +178,7 @@ class _TeamSelectorState extends State<TeamSelector> {
                               borderRadius: BorderRadius.circular(
                                   20), // Adjust the radius as needed
                               child: Image.asset(
-                                team2!.normalImagePath,
+                                logic.team2!.normalImagePath,
                                 fit: BoxFit
                                     .cover, // Use BoxFit.cover to maintain the aspect ratio
                               ),

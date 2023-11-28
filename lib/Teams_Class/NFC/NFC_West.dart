@@ -42,7 +42,7 @@ class Rams {
   static const int id = 7;
   static const String normalImagePath = 'web/assets/Team/NFC/NFC_West/rams.jpg';
   static const String winImagePath =
-      'web/assets/winner/NFC/NFC_West/rams-01.jpg';
+      'web/assets/winner/NFC/NFC_West/Rams1-01.jpg';
 
   static const Color mainColor = Color(0xFF003594); //blu
   static const List<Color> colors = [
