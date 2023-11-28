@@ -99,25 +99,33 @@ class _TeamSelectorState extends State<TeamSelector> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Row(
-              //the text should be centered with the logos on in the middle
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                //svg Logo here H 329 W 235
                 SizedBox(
-                  width: 20,
+                  child: SvgPicture.asset(
+                    'web/assets/svg/nfl.svg', // Replace with the path to your first SVG image
+                    width: 235, // Set the width and height as needed
+                    height: 329,
+                  ),
                 ),
-                Text(
+                const Text(
                   "Choose Your Team",
                   style: TextStyle(
                     fontSize: 60,
                     fontWeight: FontWeight.w400,
-                    fontFamily: 'Leckerli One', // Specify the font family here
+                    fontFamily: 'Leckerli One',
                   ),
                 ),
                 SizedBox(
-                  width: 20,
+                  child: SvgPicture.asset(
+                    'web/assets/svg/nfl.svg',
+                    // Replace with the path to your second SVG image
+                    width: 235, // Set the width and height as needed
+                    height: 329,
+                  ),
                 ),
-                //svg Logo here H 329 W 235
               ],
             ),
             Container(
