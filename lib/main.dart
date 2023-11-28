@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'Teams_Class/ClassTeam.dart';
 import 'dart:math';
 import 'winLandingPage.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() => runApp(MyApp());
 
@@ -98,13 +99,26 @@ class _TeamSelectorState extends State<TeamSelector> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text(
-              "Choose Your Team",
-              style: TextStyle(
-                fontSize: 60,
-                fontWeight: FontWeight.w400,
-                fontFamily: 'Leckerli One', // Specify the font family here
-              ),
+            const Row(
+              //the text should be centered with the logos on in the middle
+              children: [
+                //svg Logo here H 329 W 235
+                SizedBox(
+                  width: 20,
+                ),
+                Text(
+                  "Choose Your Team",
+                  style: TextStyle(
+                    fontSize: 60,
+                    fontWeight: FontWeight.w400,
+                    fontFamily: 'Leckerli One', // Specify the font family here
+                  ),
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                //svg Logo here H 329 W 235
+              ],
             ),
             Container(
               padding:
