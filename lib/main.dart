@@ -99,12 +99,6 @@ class _TeamSelectorState extends State<TeamSelector> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.blue, // Set the border color
-                  width: 2.0, // Set the border width
-                ),
-              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
