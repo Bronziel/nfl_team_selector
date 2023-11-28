@@ -115,8 +115,6 @@ class _TeamSelectorState extends State<TeamSelector> {
                       onTap: () => _selectTeam(team1!),
                       child: Column(
                         children: [
-                          Text(team1!.name),
-                          const SizedBox(height: 20),
                           Container(
                             width: 400, // Set your desired width
                             height: 400 *
@@ -135,6 +133,32 @@ class _TeamSelectorState extends State<TeamSelector> {
                         ],
                       ),
                     ),
+                  const SizedBox(width: 10),
+                  Container(
+                    padding: const EdgeInsets.all(
+                        10), // Optional: Add padding for spacing
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.blue, // Set the border color
+                        width: 2.0, // Set the border width
+                      ),
+                    ),
+                    child: const SizedBox(
+                      height: 20,
+                      width: 75,
+                    ),
+                  ),
+                  const SizedBox(
+                      width: 10), // Add spacing between the containers and text
+                  const Text(
+                    "VS",
+                    style: TextStyle(
+                      fontSize: 60,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "Modak", // Set the font family here
+                    ),
+                  ),
+                  const SizedBox(width: 10),
                   Container(
                     padding:
                         EdgeInsets.all(10), // Optional: Add padding for spacing
@@ -144,32 +168,17 @@ class _TeamSelectorState extends State<TeamSelector> {
                         width: 2.0, // Set the border width
                       ),
                     ),
-                    child: SizedBox(
+                    child: const SizedBox(
                       height: 20,
-                      width: 200,
+                      width: 75,
                     ),
                   ),
-                  Container(
-                    padding:
-                        EdgeInsets.all(10), // Optional: Add padding for spacing
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.blue, // Set the border color
-                        width: 2.0, // Set the border width
-                      ),
-                    ),
-                    child: SizedBox(
-                      height: 20,
-                      width: 200,
-                    ),
-                  ),
+                  const SizedBox(width: 10),
                   if (team2 != null) // Check if team2 is not null
                     GestureDetector(
                       onTap: () => _selectTeam(team2!),
                       child: Column(
                         children: [
-                          Text(team2!.name),
-                          const SizedBox(height: 20),
                           Container(
                             width: 400, // Set your desired width
                             height: 400 *
