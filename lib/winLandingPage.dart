@@ -10,7 +10,7 @@ class WinnerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Winner'),
+        title: Text('LFG'),
       ),
       body: SingleChildScrollView(
         // Wrap content in a SingleChildScrollView
