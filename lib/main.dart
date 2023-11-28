@@ -97,7 +97,6 @@ class _TeamSelectorState extends State<TeamSelector> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Select Your Team:'),
             SizedBox(height: 20),
             if (team1 != null) // Check if team1 is not null
               GestureDetector(
@@ -106,12 +105,21 @@ class _TeamSelectorState extends State<TeamSelector> {
                   children: [
                     Text(team1!.name),
                     SizedBox(height: 20),
-                    Image.asset(
-                      team1!.normalImagePath,
-                      fit: BoxFit.contain,
-                      width: 400,
-                      height: 400,
-                    ),
+                    Container(
+                      width: 400, // Set your desired width
+                      height: 400 *
+                          (3105 /
+                              3446), // Calculate the height to maintain aspect ratio
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(
+                            20), // Adjust the radius as needed
+                        child: Image.asset(
+                          team1!.normalImagePath,
+                          fit: BoxFit
+                              .cover, // Use BoxFit.cover to maintain the aspect ratio
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -126,12 +134,21 @@ class _TeamSelectorState extends State<TeamSelector> {
                   children: [
                     Text(team2!.name),
                     SizedBox(height: 20),
-                    Image.asset(
-                      team2!.normalImagePath,
-                      fit: BoxFit.contain,
-                      width: 400,
-                      height: 400,
-                    ),
+                    Container(
+                      width: 400, // Set your desired width
+                      height: 400 *
+                          (3105 /
+                              3446), // Calculate the height to maintain aspect ratio
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(
+                            20), // Adjust the radius as needed
+                        child: Image.asset(
+                          team2!.normalImagePath,
+                          fit: BoxFit
+                              .cover, // Use BoxFit.cover to maintain the aspect ratio
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
