@@ -93,7 +93,6 @@ class _TeamSelectorState extends State<TeamSelector> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Team Selector')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
