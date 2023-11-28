@@ -10,7 +10,7 @@ class WinnerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('LFG'),
+        title: const Text('LFG'),
       ),
       body: SingleChildScrollView(
         // Wrap content in a SingleChildScrollView
@@ -20,19 +20,20 @@ class WinnerPage extends StatelessWidget {
             children: <Widget>[
               Text(
                 'Congratulations to ${winner.name}!',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Image.asset(
                 winner.winImagePath,
                 fit: BoxFit.contain,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               FilledButton(
                 onPressed: () {
                   Navigator.of(context).pop(); // Go back to the previous screen
                 },
-                child: Text('Back to Selection'),
+                child: const Text('Back to Selection'),
               ),
             ],
           ),

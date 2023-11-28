@@ -99,7 +99,8 @@ class _TeamSelectorState extends State<TeamSelector> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              padding: EdgeInsets.all(10), // Optional: Add padding for spacing
+              padding:
+                  const EdgeInsets.all(10), // Optional: Add padding for spacing
               decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.blue, // Set the border color
@@ -160,8 +161,8 @@ class _TeamSelectorState extends State<TeamSelector> {
                   ),
                   const SizedBox(width: 10),
                   Container(
-                    padding:
-                        EdgeInsets.all(10), // Optional: Add padding for spacing
+                    padding: const EdgeInsets.all(
+                        10), // Optional: Add padding for spacing
                     decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.blue, // Set the border color
