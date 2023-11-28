@@ -98,34 +98,42 @@ class _TeamSelectorState extends State<TeamSelector> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  child: SvgPicture.asset(
-                    'web/assets/svg/nfl.svg', // Replace with the path to your first SVG image
-                    width: 235, // Set the width and height as needed
-                    height: 329,
-                  ),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.blue, // Set the border color
+                  width: 2.0, // Set the border width
                 ),
-                const Text(
-                  "Choose Your Team",
-                  style: TextStyle(
-                    fontSize: 60,
-                    fontWeight: FontWeight.w400,
-                    fontFamily: 'Leckerli One',
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      'web/assets/svg/nfl.svg', // Replace with the path to your first SVG image
+                      width: 235, // Set the width and height as needed
+                      height: 329,
+                    ),
                   ),
-                ),
-                SizedBox(
-                  child: SvgPicture.asset(
-                    'web/assets/svg/nfl.svg',
-                    // Replace with the path to your second SVG image
-                    width: 235, // Set the width and height as needed
-                    height: 329,
+                  const Text(
+                    "Choose Your Team",
+                    style: TextStyle(
+                      fontSize: 60,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: 'Leckerli One',
+                    ),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    child: SvgPicture.asset(
+                      'web/assets/svg/nfl.svg',
+                      // Replace with the path to your second SVG image
+                      width: 235, // Set the width and height as needed
+                      height: 329,
+                    ),
+                  ),
+                ],
+              ),
             ),
             Container(
               padding:
