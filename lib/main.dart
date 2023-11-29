@@ -1,6 +1,7 @@
+// main.dart
 import 'package:flutter/material.dart';
+import 'team_logic.dart';
 import 'Teams_Class/ClassTeam.dart';
-import 'dart:math';
 import 'winLandingPage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -21,65 +22,13 @@ class TeamSelector extends StatefulWidget {
 }
 
 class _TeamSelectorState extends State<TeamSelector> {
-  late List<Team> remainingTeams;
-  Team? team1;
-  Team? team2;
+  late TeamLogic teamLogic;
 
   @override
   void initState() {
     super.initState();
-    remainingTeams = List.of(allTeams); // Initialize with all teams
-    print(
-        'All teams initialized: ${remainingTeams.map((team) => team.name).join(', ')}'); // Print all teams
-    _pickInitialTeams();
-  }
-
-  void _pickInitialTeams() {
-    // Pick two distinct initial teams
-    team1 = _getRandomTeam();
-    do {
-      team2 = _getRandomTeam();
-    } while (team1!.id == team2!.id);
-
-    print(
-        'Initial random teams: ${team1!.name} and ${team2!.name}'); // Print initial teams
-  }
-
-  Team _getRandomTeam() {
-    final random = Random();
-    final index = random.nextInt(remainingTeams.length);
-    return remainingTeams[index];
-  }
-
-  void _selectTeam(Team selectedTeam) {
-    setState(() {
-      // Find the ID of the non-selected team
-      int nonSelectedTeamId =
-          (team1!.id == selectedTeam.id) ? team2!.id : team1!.id;
-
-      // Remove the non-selected team
-      remainingTeams.removeWhere((team) => team.id == nonSelectedTeamId);
-
-      // Update the team1 and team2 for the next round
-      if (remainingTeams.length > 1) {
-        // If the selected team was team1, keep it and find a new team2
-        // If the selected team was team2, keep it and find a new team1
-        if (team1!.id == selectedTeam.id) {
-          team2 = _getNextLowestIdTeam(team1!);
-        } else {
-          team1 = _getNextLowestIdTeam(team2!);
-        }
-      } else if (remainingTeams.length == 1) {
-        // Only one team left, declare as winner
-        _showWinner(selectedTeam);
-      }
-    });
-  }
-
-  Team _getNextLowestIdTeam(Team currentTeam) {
-    return remainingTeams
-        .where((team) => team.id != currentTeam.id)
-        .reduce((a, b) => a.id < b.id ? a : b);
+    teamLogic = TeamLogic();
+    teamLogic.pickInitialTeams();
   }
 
   void _showWinner(Team winnerTeam) {
@@ -143,9 +92,16 @@ class _TeamSelectorState extends State<TeamSelector> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(height: 20),
-                  if (team1 != null) // Check if team1 is not null
+                  if (teamLogic.team1 != null) // Check if team1 is not null
                     GestureDetector(
-                      onTap: () => _selectTeam(team1!),
+                      onTap: () {
+                        bool hasChanged =
+                            teamLogic.selectTeam(teamLogic.team1!);
+                        setState(() {});
+                        if (!hasChanged) {
+                          _showWinner(teamLogic.team1!);
+                        }
+                      },
                       child: Column(
                         children: [
                           Container(
@@ -157,7 +113,7 @@ class _TeamSelectorState extends State<TeamSelector> {
                               borderRadius: BorderRadius.circular(
                                   20), // Adjust the radius as needed
                               child: Image.asset(
-                                team1!.normalImagePath,
+                                teamLogic.team1!.normalImagePath,
                                 fit: BoxFit
                                     .cover, // Use BoxFit.cover to maintain the aspect ratio
                               ),
@@ -207,9 +163,16 @@ class _TeamSelectorState extends State<TeamSelector> {
                     ),
                   ),
                   const SizedBox(width: 10),
-                  if (team2 != null) // Check if team2 is not null
+                  if (teamLogic.team2 != null) // Check if team2 is not null
                     GestureDetector(
-                      onTap: () => _selectTeam(team2!),
+                      onTap: () {
+                        bool hasChanged =
+                            teamLogic.selectTeam(teamLogic.team2!);
+                        setState(() {});
+                        if (!hasChanged) {
+                          _showWinner(teamLogic.team2!);
+                        }
+                      },
                       child: Column(
                         children: [
                           Container(
@@ -221,7 +184,7 @@ class _TeamSelectorState extends State<TeamSelector> {
                               borderRadius: BorderRadius.circular(
                                   20), // Adjust the radius as needed
                               child: Image.asset(
-                                team2!.normalImagePath,
+                                teamLogic.team2!.normalImagePath,
                                 fit: BoxFit
                                     .cover, // Use BoxFit.cover to maintain the aspect ratio
                               ),
