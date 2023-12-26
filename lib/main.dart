@@ -146,6 +146,11 @@ class _TeamSelectorState extends State<TeamSelector> {
                         // Optional: To adjust the shape of the button
                         borderRadius: BorderRadius.circular(8),
                       ),
+                      backgroundColor: Colors
+                          .transparent, // Set the button background color to transparent
+                      foregroundColor: Colors
+                          .transparent, // Also set the splash color to transparent
+                      shadowColor: Colors.transparent, // Remove shadow
                     ),
                     child: SvgPicture.asset(
                       "web/assets/buttons/Polygon1.svg",
@@ -174,6 +179,11 @@ class _TeamSelectorState extends State<TeamSelector> {
                         // Optional: To adjust the shape of the button
                         borderRadius: BorderRadius.circular(8),
                       ),
+                      backgroundColor: Colors
+                          .transparent, // Set the button background color to transparent
+                      foregroundColor: Colors
+                          .transparent, // Also set the splash color to transparent
+                      shadowColor: Colors.transparent, // Remove shadow
                     ),
                     child: SvgPicture.asset(
                       "web/assets/buttons/Polygon2.svg",
