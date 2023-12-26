@@ -140,6 +140,7 @@ class _TeamSelectorState extends State<TeamSelector> {
             Container(
               child: Row(
                 children: [
+                  const SizedBox(width: 20),
                   ElevatedButton(
                     onPressed: () {
                       if (teamLogic.undoSelection()) {
@@ -149,7 +150,65 @@ class _TeamSelectorState extends State<TeamSelector> {
                         // Handle case where there's no previous selection (e.g., show a message)
                       }
                     },
-                    child: Text('Previous'),
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets
+                          .zero, // Removes default padding around the image
+                      shape: RoundedRectangleBorder(
+                        // Optional: To adjust the shape of the button
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: SvgPicture.asset(
+                      "web/assets/buttons/Polygon1.svg",
+                      width: 98,
+                      height: 100,
+                      fit: BoxFit
+                          .cover, // Ensures the image covers the button area
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                  Stack(
+                    alignment: Alignment
+                        .center, // Aligns the child in the center of the stack
+                    children: <Widget>[
+                      Container(
+                        width: 202.69230651855470, // Width of the circle
+                        height: 198.76922607421875, // Height of the circle
+                        decoration: const BoxDecoration(
+                          color: Colors.red, // Color of the circle
+                          shape:
+                              BoxShape.circle, // Makes the container a circle
+                        ),
+                      ),
+                      const Text("32/32",
+                          style: TextStyle(color: Colors.white)), // Your text
+                    ],
+                  ),
+                  const SizedBox(width: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (teamLogic.undoSelection()) {
+                        setState(
+                            () {}); // Update the UI with the previous selection
+                      } else {
+                        // Handle case where there's no previous selection (e.g., show a message)
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets
+                          .zero, // Removes default padding around the image
+                      shape: RoundedRectangleBorder(
+                        // Optional: To adjust the shape of the button
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: SvgPicture.asset(
+                      "web/assets/buttons/Polygon2.svg",
+                      width: 98,
+                      height: 100,
+                      fit: BoxFit
+                          .cover, // Ensures the image covers the button area
+                    ),
                   ),
                 ],
               ),
