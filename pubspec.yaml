@@ -21,6 +21,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - web/assets/buttons/
     - web/assets/
     - web/assets/Team/AFC/AFC_North/
     - web/assets/Team/AFC/AFC_West/
