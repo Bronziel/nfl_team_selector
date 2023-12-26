@@ -90,12 +90,7 @@ class _TeamSelectorState extends State<TeamSelector> {
                   Container(
                     padding: const EdgeInsets.all(
                         10), // Optional: Add padding for spacing
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.blue, // Set the border color
-                        width: 2.0, // Set the border width
-                      ),
-                    ),
+
                     child: const SizedBox(
                       height: 20,
                       width: 75,
@@ -108,12 +103,6 @@ class _TeamSelectorState extends State<TeamSelector> {
                   Container(
                     padding: const EdgeInsets.all(
                         10), // Optional: Add padding for spacing
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.blue, // Set the border color
-                        width: 2.0, // Set the border width
-                      ),
-                    ),
                     child: const SizedBox(
                       height: 20,
                       width: 75,
@@ -167,27 +156,7 @@ class _TeamSelectorState extends State<TeamSelector> {
                     ),
                   ),
                   const SizedBox(width: 20),
-                  Stack(
-                    alignment: Alignment.center,
-                    children: <Widget>[
-                      Container(
-                        width: 202.69230651855470,
-                        height: 198.76922607421875,
-                        decoration: const BoxDecoration(
-                          color: Colors.red,
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                      const Text(
-                        "32/32",
-                        style: TextStyle(
-                          fontSize: 60.0, // Set font size
-                          fontFamily: 'Modak', // Set font family to Modak
-                          color: Colors.white, // Set text color (optional)
-                        ),
-                      ),
-                    ],
-                  ),
+                  const RedballWidget(),
                   const SizedBox(width: 20),
                   ElevatedButton(
                     onPressed: () {
@@ -220,6 +189,37 @@ class _TeamSelectorState extends State<TeamSelector> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class RedballWidget extends StatelessWidget {
+  const RedballWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      alignment: Alignment.center,
+      children: <Widget>[
+        Container(
+          width: 202.69230651855470,
+          height: 198.76922607421875,
+          decoration: const BoxDecoration(
+            color: Colors.red,
+            shape: BoxShape.circle,
+          ),
+        ),
+        const Text(
+          "32/32",
+          style: TextStyle(
+            fontSize: 60.0, // Set font size
+            fontFamily: 'Modak', // Set font family to Modak
+            color: Colors.white, // Set text color (optional)
+          ),
+        ),
+      ],
     );
   }
 }
