@@ -1,11 +1,12 @@
-// team_logic.dart
 import 'dart:math';
+import 'dart:collection';
 import 'Teams_Class/ClassTeam.dart';
 
 class TeamLogic {
   late List<Team> remainingTeams;
   Team? team1;
   Team? team2;
+  final Queue<List<Team>> selectionHistory = Queue<List<Team>>();
 
   TeamLogic() {
     remainingTeams = List.of(allTeams); // Initialize with all teams
@@ -25,6 +26,9 @@ class TeamLogic {
   }
 
   bool selectTeam(Team selectedTeam) {
+    // Store the current selection in history before changing it
+    selectionHistory.add([team1!, team2!]);
+
     int nonSelectedTeamId =
         (team1!.id == selectedTeam.id) ? team2!.id : team1!.id;
     remainingTeams.removeWhere((team) => team.id == nonSelectedTeamId);
@@ -46,5 +50,15 @@ class TeamLogic {
     return remainingTeams
         .where((team) => team.id != currentTeam.id)
         .reduce((a, b) => a.id < b.id ? a : b);
+  }
+
+  bool undoSelection() {
+    if (selectionHistory.isNotEmpty) {
+      final lastSelection = selectionHistory.removeLast();
+      team1 = lastSelection[0];
+      team2 = lastSelection[1];
+      return true; // Indicate that an undo action has occurred
+    }
+    return false; // No history to undo
   }
 }

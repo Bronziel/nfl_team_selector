@@ -137,6 +137,17 @@ class _TeamSelectorState extends State<TeamSelector> {
                       width: 75,
                     ),
                   ),
+                  ElevatedButton(
+                    onPressed: () {
+                      if (teamLogic.undoSelection()) {
+                        setState(
+                            () {}); // Update the UI with the previous selection
+                      } else {
+                        // Handle case where there's no previous selection (e.g., show a message)
+                      }
+                    },
+                    child: Text('Previous'),
+                  ),
                   const SizedBox(
                       width: 10), // Add spacing between the containers and text
                   const Text(
