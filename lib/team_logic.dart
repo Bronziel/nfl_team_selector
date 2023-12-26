@@ -37,27 +37,12 @@ class TeamLogic {
     return remainingTeams[index];
   }
 
-  void printRemainingTeamNames() {
-    print("Remaining Teams:");
-    for (Team team in remainingTeams) {
-      print(team.name);
-    }
-  }
-
-  void printRemainingTeamid() {
-    print("Remaining Teams id:");
-    for (Team team in remainingTeams) {
-      print(team.id);
-    }
-  }
-
   bool selectTeam(Team selectedTeam) {
     // Store the current selection in history before changing it
     selectionHistory.add([team1!, team2!]);
     futureSelections
         .clear(); // Clear future selections when a new selection is made
-    printRemainingTeamNames();
-    printRemainingTeamid();
+
     int nonSelectedTeamId =
         (team1!.id == selectedTeam.id) ? team2!.id : team1!.id;
     remainingTeams.removeWhere((team) => team.id == nonSelectedTeamId);

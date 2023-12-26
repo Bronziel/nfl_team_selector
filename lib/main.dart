@@ -225,6 +225,9 @@ class RedballWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Print the current selection number
+    print("Current Selection Number: $currentSelectionNumber");
+
     return Stack(
       alignment: Alignment.center,
       children: <Widget>[
@@ -241,7 +244,7 @@ class RedballWidget extends StatelessWidget {
           style: const TextStyle(
             fontSize: 60.0, // Set font size
             fontFamily: 'Modak', // Set font family to Modak
-            color: Colors.white, // Set text color (optional)
+            color: Colors.white, // Set text color
           ),
         ),
       ],
