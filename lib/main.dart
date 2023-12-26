@@ -165,18 +165,17 @@ class _TeamSelectorState extends State<TeamSelector> {
                   const SizedBox(width: 20),
                   ElevatedButton(
                     onPressed: () {
-                      if (teamLogic.undoSelection()) {
+                      if (teamLogic.redoSelection()) {
                         setState(
-                            () {}); // Update the UI with the previous selection
+                            () {}); // Update the UI with the redone selection
                       } else {
-                        // Handle case where there's no previous selection (e.g., show a message)
+                        // Handle case where there's no selection to redo
                       }
                     },
                     style: ElevatedButton.styleFrom(
                       padding: EdgeInsets
                           .zero, // Removes default padding around the image
                       shape: RoundedRectangleBorder(
-                        // Optional: To adjust the shape of the button
                         borderRadius: BorderRadius.circular(8),
                       ),
                       backgroundColor: Colors

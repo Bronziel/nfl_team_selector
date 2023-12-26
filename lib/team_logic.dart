@@ -7,6 +7,8 @@ class TeamLogic {
   Team? team1;
   Team? team2;
   final Queue<List<Team>> selectionHistory = Queue<List<Team>>();
+  final Queue<List<Team>> futureSelections =
+      Queue<List<Team>>(); // New Queue for future selections
 
   TeamLogic() {
     remainingTeams = List.of(allTeams); // Initialize with all teams
@@ -28,6 +30,8 @@ class TeamLogic {
   bool selectTeam(Team selectedTeam) {
     // Store the current selection in history before changing it
     selectionHistory.add([team1!, team2!]);
+    futureSelections
+        .clear(); // Clear future selections when a new selection is made
 
     int nonSelectedTeamId =
         (team1!.id == selectedTeam.id) ? team2!.id : team1!.id;
@@ -54,11 +58,24 @@ class TeamLogic {
 
   bool undoSelection() {
     if (selectionHistory.isNotEmpty) {
+      // Push the current state to future selections before undoing
+      futureSelections.add([team1!, team2!]);
+
       final lastSelection = selectionHistory.removeLast();
       team1 = lastSelection[0];
       team2 = lastSelection[1];
       return true; // Indicate that an undo action has occurred
     }
     return false; // No history to undo
+  }
+
+  bool redoSelection() {
+    if (futureSelections.isNotEmpty) {
+      final nextSelection = futureSelections.removeLast();
+      team1 = nextSelection[0];
+      team2 = nextSelection[1];
+      return true; // Indicate that a redo action has occurred
+    }
+    return false; // No future selections to redo
   }
 }
