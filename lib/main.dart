@@ -48,20 +48,13 @@ class _TeamSelectorState extends State<TeamSelector> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  nflsvglogo(),
-                  const Text(
-                    "Choose Your Team",
-                    style: TextStyle(
-                      fontSize: 60,
-                      fontWeight: FontWeight.w400,
-                      fontFamily: 'Leckerli One',
-                    ),
-                  ),
-                  nflsvglogo(),
+                  Nflsvglogo(),
+                  ChoseTeamTextWidget(),
+                  Nflsvglogo(),
                 ],
               ),
             ),
@@ -90,7 +83,7 @@ class _TeamSelectorState extends State<TeamSelector> {
                         }
                       },
                       child: Column(
-                        children: [teamlogosbox1(teamLogic: teamLogic)],
+                        children: [Teamlogosbox1(teamLogic: teamLogic)],
                       ),
                     ),
                   const SizedBox(width: 10),
@@ -121,14 +114,7 @@ class _TeamSelectorState extends State<TeamSelector> {
                   ),
                   const SizedBox(
                       width: 10), // Add spacing between the containers and text
-                  const Text(
-                    "VS",
-                    style: TextStyle(
-                      fontSize: 60,
-                      fontWeight: FontWeight.w400,
-                      fontFamily: "Modak", // Set the font family here
-                    ),
-                  ),
+                  const VsTextWidget(),
                   const SizedBox(width: 10),
                   Container(
                     padding: const EdgeInsets.all(
@@ -156,7 +142,7 @@ class _TeamSelectorState extends State<TeamSelector> {
                         }
                       },
                       child: Column(
-                        children: [teamlogosbox2(teamLogic: teamLogic)],
+                        children: [Teamlogosbox2(teamLogic: teamLogic)],
                       ),
                     ),
                 ],
@@ -169,8 +155,44 @@ class _TeamSelectorState extends State<TeamSelector> {
   }
 }
 
-class nflsvglogo extends StatelessWidget {
-  const nflsvglogo({
+class ChoseTeamTextWidget extends StatelessWidget {
+  const ChoseTeamTextWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text(
+      "Choose Your Team",
+      style: TextStyle(
+        fontSize: 60,
+        fontWeight: FontWeight.w400,
+        fontFamily: 'Leckerli One',
+      ),
+    );
+  }
+}
+
+class VsTextWidget extends StatelessWidget {
+  const VsTextWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text(
+      "VS",
+      style: TextStyle(
+        fontSize: 60,
+        fontWeight: FontWeight.w400,
+        fontFamily: "Modak", // Set the font family here
+      ),
+    );
+  }
+}
+
+class Nflsvglogo extends StatelessWidget {
+  const Nflsvglogo({
     super.key,
   });
 
@@ -186,8 +208,8 @@ class nflsvglogo extends StatelessWidget {
   }
 }
 
-class teamlogosbox2 extends StatelessWidget {
-  const teamlogosbox2({
+class Teamlogosbox2 extends StatelessWidget {
+  const Teamlogosbox2({
     super.key,
     required this.teamLogic,
   });
@@ -211,8 +233,8 @@ class teamlogosbox2 extends StatelessWidget {
   }
 }
 
-class teamlogosbox1 extends StatelessWidget {
-  const teamlogosbox1({
+class Teamlogosbox1 extends StatelessWidget {
+  const Teamlogosbox1({
     super.key,
     required this.teamLogic,
   });
