@@ -6,12 +6,11 @@ class TeamLogic {
   late List<Team> remainingTeams;
   Team? team1;
   Team? team2;
-  final Queue<List<Team>> selectionHistory = Queue<List<Team>>();
-  final Queue<List<Team>> futureSelections =
-      Queue<List<Team>>(); // New Queue for future selections
+  final Queue<List<dynamic>> selectionHistory = Queue<List<dynamic>>();
+  final Queue<List<dynamic>> futureSelections = Queue<List<dynamic>>();
 
   TeamLogic() {
-    remainingTeams = List.of(allTeams); // Initialize with all teams
+    remainingTeams = List.of(allTeams);
     print(allTeams.length);
   }
   int getCurrentSelectionNumber() {
@@ -38,11 +37,9 @@ class TeamLogic {
   }
 
   bool selectTeam(Team selectedTeam) {
-    // Store the current selection in history before changing it
-    selectionHistory.add([team1!, team2!]);
-    futureSelections
-        .clear(); // Clear future selections when a new selection is made
-
+    // Store the current selection and remaining teams in history
+    selectionHistory.add([team1!, team2!, List.of(remainingTeams)]);
+    futureSelections.clear(); // Clear future selections
     int nonSelectedTeamId =
         (team1!.id == selectedTeam.id) ? team2!.id : team1!.id;
     remainingTeams.removeWhere((team) => team.id == nonSelectedTeamId);
@@ -70,24 +67,25 @@ class TeamLogic {
 
   bool undoSelection() {
     if (selectionHistory.isNotEmpty) {
-      // Push the current state to future selections before undoing
-      futureSelections.add([team1!, team2!]);
+      futureSelections.add([team1!, team2!, List.of(remainingTeams)]);
 
-      final lastSelection = selectionHistory.removeLast();
-      team1 = lastSelection[0];
-      team2 = lastSelection[1];
-      return true; // Indicate that an undo action has occurred
+      final List<dynamic> lastSelection = selectionHistory.removeLast();
+      team1 = lastSelection[0] as Team;
+      team2 = lastSelection[1] as Team;
+      remainingTeams = lastSelection[2] as List<Team>;
+      return true;
     }
-    return false; // No history to undo
+    return false;
   }
 
   bool redoSelection() {
     if (futureSelections.isNotEmpty) {
-      final nextSelection = futureSelections.removeLast();
-      team1 = nextSelection[0];
-      team2 = nextSelection[1];
-      return true; // Indicate that a redo action has occurred
+      final List<dynamic> nextSelection = futureSelections.removeLast();
+      team1 = nextSelection[0] as Team;
+      team2 = nextSelection[1] as Team;
+      remainingTeams = nextSelection[2] as List<Team>;
+      return true;
     }
-    return false; // No future selections to redo
+    return false;
   }
 }
