@@ -168,20 +168,24 @@ class _TeamSelectorState extends State<TeamSelector> {
                   ),
                   const SizedBox(width: 20),
                   Stack(
-                    alignment: Alignment
-                        .center, // Aligns the child in the center of the stack
+                    alignment: Alignment.center,
                     children: <Widget>[
                       Container(
-                        width: 202.69230651855470, // Width of the circle
-                        height: 198.76922607421875, // Height of the circle
+                        width: 202.69230651855470,
+                        height: 198.76922607421875,
                         decoration: const BoxDecoration(
-                          color: Colors.red, // Color of the circle
-                          shape:
-                              BoxShape.circle, // Makes the container a circle
+                          color: Colors.red,
+                          shape: BoxShape.circle,
                         ),
                       ),
-                      const Text("32/32",
-                          style: TextStyle(color: Colors.white)), // Your text
+                      const Text(
+                        "32/32",
+                        style: TextStyle(
+                          fontSize: 60.0, // Set font size
+                          fontFamily: 'Modak', // Set font family to Modak
+                          color: Colors.white, // Set text color (optional)
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(width: 20),
