@@ -77,6 +77,7 @@ class _TeamSelectorState extends State<TeamSelector> {
                       onTap: () {
                         bool hasChanged =
                             teamLogic.selectTeam(teamLogic.team1!);
+
                         setState(() {});
                         if (!hasChanged) {
                           _showWinner(teamLogic.team1!);
@@ -136,6 +137,9 @@ class _TeamSelectorState extends State<TeamSelector> {
                         setState(
                             () {}); // Update the UI with the previous selection
                       } else {
+                        const SnackBar(
+                          content: Text("You Can't go back more"),
+                        );
                         // Handle case where there's no previous selection (e.g., show a message)
                       }
                     },
@@ -161,14 +165,21 @@ class _TeamSelectorState extends State<TeamSelector> {
                     ),
                   ),
                   const SizedBox(width: 20),
-                  const RedballWidget(),
+                  RedballWidget(
+                    currentSelectionNumber:
+                        teamLogic.getCurrentSelectionNumber(),
+                  ),
                   const SizedBox(width: 20),
                   ElevatedButton(
                     onPressed: () {
                       if (teamLogic.redoSelection()) {
                         setState(
-                            () {}); // Update the UI with the redone selection
+                            () {}); // This triggers a rebuild of the widget with the new state
                       } else {
+                        const SnackBar(
+                          content: Text(
+                              "You have reached where you started.do a selection to continue"),
+                        );
                         // Handle case where there's no selection to redo
                       }
                     },
@@ -203,8 +214,13 @@ class _TeamSelectorState extends State<TeamSelector> {
 }
 
 class RedballWidget extends StatelessWidget {
+  final int currentSelectionNumber;
+  final int totalSelections;
+
   const RedballWidget({
     super.key,
+    required this.currentSelectionNumber,
+    this.totalSelections = 32, // Assuming 32 is the total number of selections
   });
 
   @override
@@ -220,9 +236,9 @@ class RedballWidget extends StatelessWidget {
             shape: BoxShape.circle,
           ),
         ),
-        const Text(
-          "32/32",
-          style: TextStyle(
+        Text(
+          "$currentSelectionNumber/$totalSelections",
+          style: const TextStyle(
             fontSize: 60.0, // Set font size
             fontFamily: 'Modak', // Set font family to Modak
             color: Colors.white, // Set text color (optional)
