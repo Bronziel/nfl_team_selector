@@ -21,6 +21,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - web/assets/buttons/
     - web/assets/
     - web/assets/Team/AFC/AFC_North/
     - web/assets/Team/AFC/AFC_West/
@@ -39,6 +40,17 @@ flutter:
     - web/assets/winner/AFC/AFC_East/
     - web/assets/winner/AFC/AFC_South/
     - web/assets/svg/
+    - web/assets/NFLSVG/AFC/
+    - web/assets/NFLSVG/NFC/
+    - web/assets/NFLSVG/NFC/North/
+    - web/assets/NFLSVG/NFC/West/
+    - web/assets/NFLSVG/NFC/East/
+    - web/assets/NFLSVG/NFC/South/
+    - web/assets/NFLSVG/AFC/North/
+    - web/assets/NFLSVG/AFC/West/
+    - web/assets/NFLSVG/AFC/East/
+    - web/assets/NFLSVG/AFC/South/
+    
   fonts:
     - family: Modak
       fonts:

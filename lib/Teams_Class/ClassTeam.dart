@@ -42,6 +42,8 @@ final List<Team> nfcTeams = [
   ...nfcWestTeams,
   ...nfcEastTeams,
   ...nfcSouthTeams,
+];
+final List<Team> afcTeams = [
   ...afcNorthTeams,
   ...afcWestTeams,
   ...afcEastTeams,
@@ -51,6 +53,7 @@ final List<Team> allTeams = [
   ...afcNorthTeams,
   ...nfcNorthTeams,
   ...nfcWestTeams,
+  ...afcWestTeams,
   ...nfcEastTeams,
   ...nfcSouthTeams,
   ...afcEastTeams,
