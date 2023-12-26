@@ -53,6 +53,7 @@ final List<Team> allTeams = [
   ...afcNorthTeams,
   ...nfcNorthTeams,
   ...nfcWestTeams,
+  ...afcWestTeams,
   ...nfcEastTeams,
   ...nfcSouthTeams,
   ...afcEastTeams,
