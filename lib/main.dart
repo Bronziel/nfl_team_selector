@@ -52,13 +52,7 @@ class _TeamSelectorState extends State<TeamSelector> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    child: SvgPicture.asset(
-                      'web/assets/svg/nfl.svg', // Replace with the path to your first SVG image
-                      width: 235, // Set the width and height as needed
-                      height: 329,
-                    ),
-                  ),
+                  nflsvglogo(),
                   const Text(
                     "Choose Your Team",
                     style: TextStyle(
@@ -67,14 +61,7 @@ class _TeamSelectorState extends State<TeamSelector> {
                       fontFamily: 'Leckerli One',
                     ),
                   ),
-                  SizedBox(
-                    child: SvgPicture.asset(
-                      'web/assets/svg/nfl.svg',
-                      // Replace with the path to your second SVG image
-                      width: 235, // Set the width and height as needed
-                      height: 329,
-                    ),
-                  ),
+                  nflsvglogo(),
                 ],
               ),
             ),
@@ -103,23 +90,7 @@ class _TeamSelectorState extends State<TeamSelector> {
                         }
                       },
                       child: Column(
-                        children: [
-                          Container(
-                            width: 400, // Set your desired width
-                            height: 400 *
-                                (3105 /
-                                    3446), // Calculate the height to maintain aspect ratio
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(
-                                  20), // Adjust the radius as needed
-                              child: Image.asset(
-                                teamLogic.team1!.normalImagePath,
-                                fit: BoxFit
-                                    .cover, // Use BoxFit.cover to maintain the aspect ratio
-                              ),
-                            ),
-                          )
-                        ],
+                        children: [teamlogosbox1(teamLogic: teamLogic)],
                       ),
                     ),
                   const SizedBox(width: 10),
@@ -185,29 +156,80 @@ class _TeamSelectorState extends State<TeamSelector> {
                         }
                       },
                       child: Column(
-                        children: [
-                          Container(
-                            width: 400, // Set your desired width
-                            height: 400 *
-                                (3105 /
-                                    3446), // Calculate the height to maintain aspect ratio
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(
-                                  20), // Adjust the radius as needed
-                              child: Image.asset(
-                                teamLogic.team2!.normalImagePath,
-                                fit: BoxFit
-                                    .cover, // Use BoxFit.cover to maintain the aspect ratio
-                              ),
-                            ),
-                          )
-                        ],
+                        children: [teamlogosbox2(teamLogic: teamLogic)],
                       ),
                     ),
                 ],
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class nflsvglogo extends StatelessWidget {
+  const nflsvglogo({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      child: SvgPicture.asset(
+        'web/assets/svg/nfl.svg', // Replace with the path to your first SVG image
+        width: 235, // Set the width and height as needed
+        height: 329,
+      ),
+    );
+  }
+}
+
+class teamlogosbox2 extends StatelessWidget {
+  const teamlogosbox2({
+    super.key,
+    required this.teamLogic,
+  });
+
+  final TeamLogic teamLogic;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 400, // Set your desired width
+      height:
+          400 * (3105 / 3446), // Calculate the height to maintain aspect ratio
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20), // Adjust the radius as needed
+        child: Image.asset(
+          teamLogic.team2!.normalImagePath,
+          fit: BoxFit.cover, // Use BoxFit.cover to maintain the aspect ratio
+        ),
+      ),
+    );
+  }
+}
+
+class teamlogosbox1 extends StatelessWidget {
+  const teamlogosbox1({
+    super.key,
+    required this.teamLogic,
+  });
+
+  final TeamLogic teamLogic;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 400, // Set your desired width
+      height:
+          400 * (3105 / 3446), // Calculate the height to maintain aspect ratio
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20), // Adjust the radius as needed
+        child: Image.asset(
+          teamLogic.team1!.normalImagePath,
+          fit: BoxFit.cover, // Use BoxFit.cover to maintain the aspect ratio
         ),
       ),
     );
