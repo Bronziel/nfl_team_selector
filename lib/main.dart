@@ -156,13 +156,7 @@ class _TeamSelectorState extends State<TeamSelector> {
                           .transparent, // Also set the splash color to transparent
                       shadowColor: Colors.transparent, // Remove shadow
                     ),
-                    child: SvgPicture.asset(
-                      "web/assets/buttons/Polygon1.svg",
-                      width: 98,
-                      height: 100,
-                      fit: BoxFit
-                          .cover, // Ensures the image covers the button area
-                    ),
+                    child: const BackButtonWidget(),
                   ),
                   const SizedBox(width: 20),
                   RedballWidget(
@@ -195,13 +189,7 @@ class _TeamSelectorState extends State<TeamSelector> {
                           .transparent, // Also set the splash color to transparent
                       shadowColor: Colors.transparent, // Remove shadow
                     ),
-                    child: SvgPicture.asset(
-                      "web/assets/buttons/Polygon2.svg",
-                      width: 98,
-                      height: 100,
-                      fit: BoxFit
-                          .cover, // Ensures the image covers the button area
-                    ),
+                    child: const ForwardButtonWidget(),
                   ),
                 ],
               ),
@@ -209,6 +197,38 @@ class _TeamSelectorState extends State<TeamSelector> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class ForwardButtonWidget extends StatelessWidget {
+  const ForwardButtonWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SvgPicture.asset(
+      "web/assets/buttons/Polygon2.svg",
+      width: 98,
+      height: 100,
+      fit: BoxFit.cover, // Ensures the image covers the button area
+    );
+  }
+}
+
+class BackButtonWidget extends StatelessWidget {
+  const BackButtonWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SvgPicture.asset(
+      "web/assets/buttons/Polygon1.svg",
+      width: 98,
+      height: 100,
+      fit: BoxFit.cover, // Ensures the image covers the button area
     );
   }
 }
