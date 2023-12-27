@@ -141,38 +141,59 @@ class _TeamSelectorState extends State<TeamSelector> {
                         teamLogic.getCurrentSelectionNumber(),
                   ),
                   const SizedBox(width: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (teamLogic.redoSelection()) {
-                        setState(
-                            () {}); // This triggers a rebuild of the widget with the new state
-                      } else {
-                        const SnackBar(
-                          content: Text(
-                              "You have reached where you started.do a selection to continue"),
-                        );
-                        // Handle case where there's no selection to redo
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets
-                          .zero, // Removes default padding around the image
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      backgroundColor: Colors
-                          .transparent, // Set the button background color to transparent
-                      foregroundColor: Colors
-                          .transparent, // Also set the splash color to transparent
-                      shadowColor: Colors.transparent, // Remove shadow
-                    ),
-                    child: const ForwardButtonWidget(),
+                  ForwardButtonWidget(
+                    teamLogic: teamLogic,
+                    onStateChanged: () => setState(() {}),
                   ),
                 ],
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ForwardButtonWidget extends StatelessWidget {
+  final TeamLogic teamLogic;
+  final VoidCallback onStateChanged;
+
+  const ForwardButtonWidget({
+    Key? key,
+    required this.teamLogic,
+    required this.onStateChanged,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        if (teamLogic.redoSelection()) {
+          onStateChanged();
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text(
+                  "You have reached where you started. Do a selection to continue"),
+            ),
+          );
+        }
+      },
+      style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.transparent,
+        shadowColor: Colors.transparent,
+      ),
+      child: SvgPicture.asset(
+        "web/assets/buttons/Polygon2.svg",
+        width: 98,
+        height: 100,
+        fit: BoxFit.cover,
       ),
     );
   }
@@ -221,8 +242,8 @@ class BackButtonWidget extends StatelessWidget {
   }
 }
 
-class ForwardButtonWidget extends StatelessWidget {
-  const ForwardButtonWidget({
+class ForwardButtonImageWidget extends StatelessWidget {
+  const ForwardButtonImageWidget({
     super.key,
   });
 
