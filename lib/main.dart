@@ -131,32 +131,9 @@ class _TeamSelectorState extends State<TeamSelector> {
               child: Row(
                 children: [
                   const SizedBox(width: 20),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (teamLogic.undoSelection()) {
-                        setState(
-                            () {}); // Update the UI with the previous selection
-                      } else {
-                        const SnackBar(
-                          content: Text("You Can't go back more"),
-                        );
-                        // Handle case where there's no previous selection (e.g., show a message)
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets
-                          .zero, // Removes default padding around the image
-                      shape: RoundedRectangleBorder(
-                        // Optional: To adjust the shape of the button
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      backgroundColor: Colors
-                          .transparent, // Set the button background color to transparent
-                      foregroundColor: Colors
-                          .transparent, // Also set the splash color to transparent
-                      shadowColor: Colors.transparent, // Remove shadow
-                    ),
-                    child: const BackButtonWidget(),
+                  BackButtonWidget(
+                    teamLogic: teamLogic,
+                    onStateChanged: () => setState(() {}),
                   ),
                   const SizedBox(width: 20),
                   RedballWidget(
@@ -201,6 +178,49 @@ class _TeamSelectorState extends State<TeamSelector> {
   }
 }
 
+class BackButtonWidget extends StatelessWidget {
+  final TeamLogic teamLogic;
+  final VoidCallback onStateChanged;
+
+  const BackButtonWidget({
+    Key? key,
+    required this.teamLogic,
+    required this.onStateChanged,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        if (teamLogic.undoSelection()) {
+          onStateChanged();
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("You Can't go back more"),
+            ),
+          );
+        }
+      },
+      style: ElevatedButton.styleFrom(
+        padding: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.transparent,
+        shadowColor: Colors.transparent,
+      ),
+      child: SvgPicture.asset(
+        "web/assets/buttons/Polygon1.svg",
+        width: 98,
+        height: 100,
+        fit: BoxFit.cover,
+      ),
+    );
+  }
+}
+
 class ForwardButtonWidget extends StatelessWidget {
   const ForwardButtonWidget({
     super.key,
@@ -217,8 +237,8 @@ class ForwardButtonWidget extends StatelessWidget {
   }
 }
 
-class BackButtonWidget extends StatelessWidget {
-  const BackButtonWidget({
+class BackButtonimageWidget extends StatelessWidget {
+  const BackButtonimageWidget({
     super.key,
   });
 
