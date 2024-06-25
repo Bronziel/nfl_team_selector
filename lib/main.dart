@@ -323,7 +323,7 @@ class ChoseTeamTextWidget extends StatelessWidget {
     return const Text(
       "Choose Your Team",
       style: TextStyle(
-        fontSize: 60,
+        fontSize: 55,
         fontWeight: FontWeight.w400,
         fontFamily: 'Leckerli One',
       ),
@@ -356,11 +356,13 @@ class Nflsvglogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: SvgPicture.asset(
-        'web/assets/svg/nfl.svg', // Replace with the path to your first SVG image
-        width: 235, // Set the width and height as needed
-        height: 329,
+    return Expanded(
+      child: SizedBox(
+        child: SvgPicture.asset(
+          'web/assets/svg/nfl.svg', // Replace with the path to your first SVG image
+          width: 235, // Set the width and height as needed
+          height: 329,
+        ),
       ),
     );
   }
