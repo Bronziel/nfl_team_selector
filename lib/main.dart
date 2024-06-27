@@ -68,63 +68,70 @@ class _TeamSelectorState extends State<TeamSelector> {
                 ),
               ),
 
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 20),
-                  if (teamLogic.team1 != null) // Check if team1 is not null
-                    GestureDetector(
-                      onTap: () {
-                        bool hasChanged =
-                            teamLogic.selectTeam(teamLogic.team1!);
+              child: Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 20),
+                    if (teamLogic.team1 != null) // Check if team1 is not null
+                      GestureDetector(
+                        onTap: () {
+                          bool hasChanged =
+                              teamLogic.selectTeam(teamLogic.team1!);
 
-                        setState(() {});
-                        if (!hasChanged) {
-                          _showWinner(teamLogic.team1!);
-                        }
-                      },
-                      child: Column(
-                        children: [Teamlogosbox1(teamLogic: teamLogic)],
+                          setState(() {});
+                          if (!hasChanged) {
+                            _showWinner(teamLogic.team1!);
+                          }
+                        },
+                        child: Expanded(
+                          child: Column(
+                            children: [Teamlogosbox1(teamLogic: teamLogic)],
+                          ),
+                        ),
+                      ),
+                    const SizedBox(width: 10),
+                    Container(
+                      padding: const EdgeInsets.all(
+                          10), // Optional: Add padding for spacing
+
+                      child: const SizedBox(
+                        height: 20,
+                        width: 75,
                       ),
                     ),
-                  const SizedBox(width: 10),
-                  Container(
-                    padding: const EdgeInsets.all(
-                        10), // Optional: Add padding for spacing
-
-                    child: const SizedBox(
-                      height: 20,
-                      width: 75,
-                    ),
-                  ),
-                  const SizedBox(
-                      width: 10), // Add spacing between the containers and text
-                  const VsTextWidget(),
-                  const SizedBox(width: 10),
-                  Container(
-                    padding: const EdgeInsets.all(
-                        10), // Optional: Add padding for spacing
-                    child: const SizedBox(
-                      height: 20,
-                      width: 75,
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  if (teamLogic.team2 != null) // Check if team2 is not null
-                    GestureDetector(
-                      onTap: () {
-                        bool hasChanged =
-                            teamLogic.selectTeam(teamLogic.team2!);
-                        setState(() {});
-                        if (!hasChanged) {
-                          _showWinner(teamLogic.team2!);
-                        }
-                      },
-                      child: Column(
-                        children: [Teamlogosbox2(teamLogic: teamLogic)],
+                    const SizedBox(
+                        width:
+                            10), // Add spacing between the containers and text
+                    const VsTextWidget(),
+                    const SizedBox(width: 10),
+                    Container(
+                      padding: const EdgeInsets.all(
+                          10), // Optional: Add padding for spacing
+                      child: const SizedBox(
+                        height: 20,
+                        width: 75,
                       ),
                     ),
-                ],
+                    const SizedBox(width: 10),
+                    if (teamLogic.team2 != null) // Check if team2 is not null
+                      GestureDetector(
+                        onTap: () {
+                          bool hasChanged =
+                              teamLogic.selectTeam(teamLogic.team2!);
+                          setState(() {});
+                          if (!hasChanged) {
+                            _showWinner(teamLogic.team2!);
+                          }
+                        },
+                        child: Expanded(
+                          child: Column(
+                            children: [Teamlogosbox2(teamLogic: teamLogic)],
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
               ),
             ),
             Container(
@@ -249,11 +256,13 @@ class ForwardButtonImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(
-      "web/assets/buttons/Polygon2.svg",
-      width: 98,
-      height: 100,
-      fit: BoxFit.cover, // Ensures the image covers the button area
+    return Expanded(
+      child: SvgPicture.asset(
+        "web/assets/buttons/Polygon2.svg",
+        width: 98,
+        height: 100,
+        fit: BoxFit.cover, // Ensures the image covers the button area
+      ),
     );
   }
 }
@@ -265,11 +274,13 @@ class BackButtonimageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(
-      "web/assets/buttons/Polygon1.svg",
-      width: 98,
-      height: 100,
-      fit: BoxFit.cover, // Ensures the image covers the button area
+    return Expanded(
+      child: SvgPicture.asset(
+        "web/assets/buttons/Polygon1.svg",
+        width: 98,
+        height: 100,
+        fit: BoxFit.cover, // Ensures the image covers the button area
+      ),
     );
   }
 }
@@ -292,12 +303,14 @@ class RedballWidget extends StatelessWidget {
     return Stack(
       alignment: Alignment.center,
       children: <Widget>[
-        Container(
-          width: 202.69230651855470,
-          height: 198.76922607421875,
-          decoration: const BoxDecoration(
-            color: Colors.red,
-            shape: BoxShape.circle,
+        Expanded(
+          child: Container(
+            width: 202.69230651855470,
+            height: 198.76922607421875,
+            decoration: const BoxDecoration(
+              color: Colors.red,
+              shape: BoxShape.circle,
+            ),
           ),
         ),
         Text(
@@ -356,11 +369,13 @@ class Nflsvglogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: SvgPicture.asset(
-        'web/assets/svg/nfl.svg', // Replace with the path to your first SVG image
-        width: 235, // Set the width and height as needed
-        height: 329,
+    return Expanded(
+      child: SizedBox(
+        child: SvgPicture.asset(
+          'web/assets/svg/nfl.svg', // Replace with the path to your first SVG image
+          width: 235, // Set the width and height as needed
+          height: 329,
+        ),
       ),
     );
   }
@@ -380,11 +395,14 @@ class Teamlogosbox2 extends StatelessWidget {
       width: 400, // Set your desired width
       height:
           400 * (3105 / 3446), // Calculate the height to maintain aspect ratio
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20), // Adjust the radius as needed
-        child: Image.asset(
-          teamLogic.team2!.normalImagePath,
-          fit: BoxFit.cover, // Use BoxFit.cover to maintain the aspect ratio
+      child: Expanded(
+        child: ClipRRect(
+          borderRadius:
+              BorderRadius.circular(20), // Adjust the radius as needed
+          child: Image.asset(
+            teamLogic.team2!.normalImagePath,
+            fit: BoxFit.cover, // Use BoxFit.cover to maintain the aspect ratio
+          ),
         ),
       ),
     );
@@ -405,11 +423,14 @@ class Teamlogosbox1 extends StatelessWidget {
       width: 400, // Set your desired width
       height:
           400 * (3105 / 3446), // Calculate the height to maintain aspect ratio
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20), // Adjust the radius as needed
-        child: Image.asset(
-          teamLogic.team1!.normalImagePath,
-          fit: BoxFit.cover, // Use BoxFit.cover to maintain the aspect ratio
+      child: Expanded(
+        child: ClipRRect(
+          borderRadius:
+              BorderRadius.circular(20), // Adjust the radius as needed
+          child: Image.asset(
+            teamLogic.team1!.normalImagePath,
+            fit: BoxFit.cover, // Use BoxFit.cover to maintain the aspect ratio
+          ),
         ),
       ),
     );
