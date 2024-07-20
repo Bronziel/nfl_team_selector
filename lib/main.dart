@@ -52,9 +52,9 @@ class _TeamSelectorState extends State<TeamSelector> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Nflsvglogo(),
+                  Expanded(child: Nflsvglogo()),
                   ChoseTeamTextWidget(),
-                  Nflsvglogo(),
+                  Expanded(child: Nflsvglogo()),
                 ],
               ),
             ),
