@@ -336,7 +336,7 @@ class ChoseTeamTextWidget extends StatelessWidget {
     return const Text(
       "Choose Your Team",
       style: TextStyle(
-        fontSize: 60,
+        fontSize: 55,
         fontWeight: FontWeight.w400,
         fontFamily: 'Leckerli One',
       ),

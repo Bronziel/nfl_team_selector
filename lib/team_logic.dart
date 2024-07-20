@@ -13,6 +13,13 @@ class TeamLogic {
     remainingTeams = List.of(allTeams);
     print(allTeams.length);
   }
+  void reset() {
+    remainingTeams = List.of(allTeams); // Reset remainingTeams to the initial list of all teams
+    team1 = null; // Reset team1 to null
+    team2 = null; // Reset team2 to null
+    selectionHistory.clear(); // Clear selection history
+    futureSelections.clear(); // Clear future selections
+  }
   int getCurrentSelectionNumber() {
     return selectionHistory.length +
         1; // +1 because the first selection is not in history yet
