@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:select_team/team_logic.dart';
 import 'Teams_Class/ClassTeam.dart';
 
 class WinnerPage extends StatelessWidget {
   final Team winner;
 
-  const WinnerPage({Key? key, required this.winner}) : super(key: key);
-
+   WinnerPage({Key? key, required this.winner}) : super(key: key);
+final TeamLogic data = TeamLogic();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,11 +30,17 @@ class WinnerPage extends StatelessWidget {
                 fit: BoxFit.contain,
               ),
               const SizedBox(height: 20),
-              FilledButton(
-                onPressed: () {
-                  Navigator.of(context).pop(); // Go back to the previous screen
-                },
-                child: const Text('Back to Selection'),
+              Row(
+                children: [
+                  FilledButton(
+                    onPressed: () {
+                      Navigator.of(context).pop(); // Go back to the previous screen
+                    },
+                    child: const Text('Back to Selection'),
+                  ),
+                  const SizedBox(width: 40,),
+                  
+                ],
               ),
             ],
           ),
